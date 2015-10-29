@@ -28,8 +28,8 @@
 
 set -e
 
-#defaultOpts=(-p 5005 -d)
-defaultOpts=()
+defaultOpts=(-p 5005 -d)
+#defaultOpts=()
 
 srcdir="$(dirname "$0")/"
 . "${srcdir}dirs.conf"

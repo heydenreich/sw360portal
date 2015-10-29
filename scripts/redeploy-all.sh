@@ -25,12 +25,12 @@
 
 set -e
 
-defaultOptsBackend=()
-defaultOptsFrontend=()
+#defaultOptsBackend=()
+#defaultOptsFrontend=()
 
 # to set debug ports and mode
-#defaultOptsBackend=(-p 5006 -d)
-#defaultOptsFrontend=(-p 5005 -d)
+defaultOptsBackend=(-p 5006 -d)
+defaultOptsFrontend=(-p 5005 -d)
 
 srcdir="$( realpath "$(dirname "$0")" )"
 . "${srcdir}/dirs.conf"

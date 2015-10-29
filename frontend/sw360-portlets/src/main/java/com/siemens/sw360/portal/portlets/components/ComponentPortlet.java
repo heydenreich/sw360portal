@@ -18,10 +18,13 @@
 package com.siemens.sw360.portal.portlets.components;
 
 import com.google.common.collect.ImmutableList;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.siemens.sw360.datahandler.common.CommonUtils;
 import com.siemens.sw360.datahandler.common.SW360Constants;
 import com.siemens.sw360.datahandler.common.SW360Utils;
@@ -44,10 +47,11 @@ import com.siemens.sw360.portal.common.PortletUtils;
 import com.siemens.sw360.portal.common.ThriftJsonSerializer;
 import com.siemens.sw360.portal.common.UsedAsLiferayAction;
 import com.siemens.sw360.portal.portlets.FossologyAwarePortlet;
-import com.siemens.sw360.portal.users.LifeRayUserSession;
-import com.siemens.sw360.portal.users.UserCacheHolder;
+import com.siemens.sw360.portal.users.*;
+//import com.siemens.sw360.portal.users.UserCacheHolder;
 import org.apache.log4j.Logger;
 import org.apache.thrift.TException;
+import com.liferay.portal.service.*;
 
 import javax.portlet.*;
 import java.io.IOException;
@@ -258,14 +262,9 @@ public class ComponentPortlet extends FossologyAwarePortlet {
             List<Component> components;
 
             if (isNullOrEmpty(searchText)) {
-                log.info("Entering get Component Summary for Export");
                 components = client.getComponentSummaryForExport();
-                log.info("leaving get Component Summary for Export");
             } else {
-                log.info("entering search Component Summary for Export");
                 components = client.searchComponentForExport(searchText);
-                log.info("leaving search Component Summary for Export");
-
             }
 
             ComponentExporter exporter = new ComponentExporter();
@@ -635,7 +634,6 @@ public class ComponentPortlet extends FossologyAwarePortlet {
     private void prepareStandardView(RenderRequest request) throws IOException {
         String searchtext = request.getParameter(KEY_SEARCH_TEXT);
 
-        log.info("in prepareStandardView of ComponentPortlet.java");
         String searchfilter = request.getParameter(KEY_SEARCH_FILTER_TEXT);
 
         Map<String, Set<String>> filterMap = new HashMap<>();
@@ -659,7 +657,6 @@ public class ComponentPortlet extends FossologyAwarePortlet {
             } else {
                 componentList = componentClient.refineSearch(searchtext, filterMap);
             }
-            log.info("intend to sort list");
             Collections.sort(componentList,(Component c1, Component c2) -> c1.name.compareTo(c2.name));
         } catch (TException e) {
             log.error("Could not search components in backend ", e);
@@ -706,6 +703,41 @@ public class ComponentPortlet extends FossologyAwarePortlet {
                 if (componentId != null) {
                     String successMsg = "Component " + component.getName() + " added successfully";
                     SessionMessages.add(request, "request_processed", successMsg);
+                    //////////////////////////////////////////////
+                    ///////////////////Test Notifications
+                    /////////////////////////////////////////////
+                    try {
+                    // get Liferay User ID
+                        long userId = -1;
+
+                        Object fromWebKey = request.getAttribute(WebKeys.USER_ID);
+                        if (fromWebKey != null && fromWebKey instanceof Long) {
+                            userId = (Long) fromWebKey;
+                        }
+
+                        if (userId <= 0) {
+                            userId = CommonUtils.toUnsignedInt(request.getRemoteUser());
+                        }
+
+                        ServiceContext serviceContext = ServiceContextFactory.getInstance(request);
+                    JSONObject payloadJSON = JSONFactoryUtil.createJSONObject();
+                    payloadJSON.put("userId", userId);
+                    payloadJSON.put("additionalData", "Your notification was added!");
+
+
+                        UserNotificationEventLocalServiceUtil.addUserNotificationEvent(userId,
+                                com.siemens.sw360.portal.notifications.SW360UserNotificationHandler.PORTLET_ID,
+                                (new Date()).getTime(),
+                                userId,
+                                payloadJSON.toString(),
+                                false,
+                                serviceContext);
+                    } catch (PortalException e) {
+                        log.error("Error in addUserNotificationEvent!", e);
+                    } catch (SystemException e) {
+                        log.error("Error in addUserNotificationEvent!", e);
+                    }
+
                 } else {
                     String failMsg = "Component was not added successfully";
                     SessionMessages.add(request, "request_processed", failMsg);
