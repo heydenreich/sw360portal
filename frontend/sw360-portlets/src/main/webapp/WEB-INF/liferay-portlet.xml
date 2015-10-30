@@ -77,6 +77,17 @@
     </portlet>
 
     <portlet>
+    <portlet-name>example</portlet-name>
+    <icon>/icon.png</icon>
+        <user-notification-definitions>
+            sw360-user-notification-definitions.xml
+        </user-notification-definitions>
+        <user-notification-handler-class>
+            com.siemens.sw360.portal.notifications.SW360UserNotificationHandler
+        </user-notification-handler-class>
+    </portlet>
+
+    <portlet>
         <portlet-name>components</portlet-name>
         <icon>/icon.png</icon>
 
@@ -84,12 +95,7 @@
         <private-request-attributes>false</private-request-attributes>
         <header-portlet-css>/css/main.css</header-portlet-css>
         <header-portlet-javascript>/js/main.js</header-portlet-javascript>
-        <user-notification-definitions>
-            sw360-user-notification-definitions.xml
-        </user-notification-definitions>
-        <user-notification-handler-class>
-            com.siemens.sw360.portal.notifications.SW360UserNotificationHandler
-        </user-notification-handler-class>
+
     </portlet>
 
     <portlet>

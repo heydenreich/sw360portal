@@ -52,6 +52,7 @@ import com.siemens.sw360.portal.users.*;
 import org.apache.log4j.Logger;
 import org.apache.thrift.TException;
 import com.liferay.portal.service.*;
+import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 
 import javax.portlet.*;
 import java.io.IOException;
@@ -321,7 +322,7 @@ public class ComponentPortlet extends FossologyAwarePortlet {
             for (Release release : client.getReleasesById(new HashSet<>(Arrays.asList(linkedIds)), user)) {
                 final Vendor vendor = release.getVendor();
 
-                final String fullname = vendor!=null ? vendor.getFullname() : "";
+                final String fullname = vendor != null ? vendor.getFullname() : "";
                 ReleaseLink linkedRelease = new ReleaseLink(release.getId(), fullname, release.getName(), release.getVersion());
                 linkedReleases.add(linkedRelease);
             }
@@ -657,7 +658,7 @@ public class ComponentPortlet extends FossologyAwarePortlet {
             } else {
                 componentList = componentClient.refineSearch(searchtext, filterMap);
             }
-            Collections.sort(componentList,(Component c1, Component c2) -> c1.name.compareTo(c2.name));
+            Collections.sort(componentList, (Component c1, Component c2) -> c1.name.compareTo(c2.name));
         } catch (TException e) {
             log.error("Could not search components in backend ", e);
             componentList = Collections.emptyList();
@@ -707,7 +708,7 @@ public class ComponentPortlet extends FossologyAwarePortlet {
                     ///////////////////Test Notifications
                     /////////////////////////////////////////////
                     try {
-                    // get Liferay User ID
+                        // get Liferay User ID
                         long userId = -1;
 
                         Object fromWebKey = request.getAttribute(WebKeys.USER_ID);
@@ -720,9 +721,9 @@ public class ComponentPortlet extends FossologyAwarePortlet {
                         }
 
                         ServiceContext serviceContext = ServiceContextFactory.getInstance(request);
-                    JSONObject payloadJSON = JSONFactoryUtil.createJSONObject();
-                    payloadJSON.put("userId", userId);
-                    payloadJSON.put("additionalData", "Your notification was added!");
+                        JSONObject payloadJSON = JSONFactoryUtil.createJSONObject();
+                        payloadJSON.put("userId", userId);
+                        payloadJSON.put("additionalData", "Your notification was added!");
 
 
                         UserNotificationEventLocalServiceUtil.addUserNotificationEvent(userId,
