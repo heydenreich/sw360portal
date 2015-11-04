@@ -427,7 +427,7 @@ public class ProjectPortlet extends FossologyAwarePortlet {
 
         Map<String, Set<String>> filterMap = new HashMap<>();
 
-        for (Projects._Fields filteredField : projectFilteredFields) {
+        for (Project._Fields filteredField : projectFilteredFields) {
             String parameter = request.getParameter(filteredField.toString());
             if (!isNullOrEmpty(parameter)) {
                 filterMap.put(filteredField.getFieldName(), CommonUtils.splitToSet(parameter));
@@ -442,7 +442,7 @@ public class ProjectPortlet extends FossologyAwarePortlet {
             ProjectService.Iface projectClient = thriftClients.makeProjectClient();
 
             if (isNullOrEmpty(searchtext) && filterMap.isEmpty()) {
-                ProjectList = projectClient.getProjectSummary(user);
+                projectList = projectClient.getProjectSummary(user);
             } else {
                 projectList = projectClient.refineSearch(searchtext, filterMap);
             }
@@ -450,7 +450,7 @@ public class ProjectPortlet extends FossologyAwarePortlet {
 
         } catch (TException e) {
             log.error("Could not search projects in backend ", e);
-            projectsList = Collections.emptyList();
+            projectList = Collections.emptyList();
         }
 
         //Set<String> vendorNames;
