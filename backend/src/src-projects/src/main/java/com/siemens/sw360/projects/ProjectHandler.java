@@ -55,6 +55,12 @@ public class ProjectHandler implements ProjectService.Iface {
     // SUMMARY GETTERS //
     /////////////////////
 
+
+    @Override
+    public List<Project> refineSearch(String text, Map<String, Set<String>> subQueryRestrictions) throws TException {
+        return searchHandler.search(text, subQueryRestrictions);
+    }
+
     @Override
     public List<Project> getMyProjects(String user) throws TException {
         assertNotEmpty(user);
