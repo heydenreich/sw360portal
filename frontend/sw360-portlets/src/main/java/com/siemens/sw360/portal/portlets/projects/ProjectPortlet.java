@@ -442,7 +442,7 @@ public class ProjectPortlet extends FossologyAwarePortlet {
             ProjectService.Iface projectClient = thriftClients.makeProjectClient();
 
             if (isNullOrEmpty(searchtext) && filterMap.isEmpty()) {
-                projectList = projectClient.getProjectSummary(user);
+                projectList = projectClient.getAccessibleProjectsSummary(user);
             } else {
                 projectList = projectClient.refineSearch(searchtext, filterMap);
             }
