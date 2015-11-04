@@ -635,7 +635,7 @@ public class ComponentPortlet extends FossologyAwarePortlet {
     private void prepareStandardView(RenderRequest request) throws IOException {
         String searchtext = request.getParameter(KEY_SEARCH_TEXT);
 
-        log.info("in prepareStandardView of ComponentPortlet.java");
+
         String searchfilter = request.getParameter(KEY_SEARCH_FILTER_TEXT);
 
         Map<String, Set<String>> filterMap = new HashMap<>();
