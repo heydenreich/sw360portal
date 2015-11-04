@@ -17,6 +17,7 @@
  */
 package com.siemens.sw360.portal.portlets.projects;
 
+import com.google.common.collect.ImmutableList;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -54,6 +55,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static com.google.common.base.Strings.nullToEmpty;
 import static com.liferay.portal.kernel.json.JSONFactoryUtil.createJSONArray;
 import static com.liferay.portal.kernel.json.JSONFactoryUtil.createJSONObject;
 import static com.siemens.sw360.datahandler.common.SW360Utils.printName;
@@ -69,6 +71,10 @@ import static org.apache.commons.lang.StringUtils.abbreviate;
 public class ProjectPortlet extends FossologyAwarePortlet {
 
     private static final Logger log = Logger.getLogger(ProjectPortlet.class);
+
+    private static final ImmutableList<Project._Fields> projectFilteredFields = ImmutableList.of(Project._Fields.PROJECT_TYPE, Project._Fields.PROJECT_RESPONSIBLE);
+
+
 
     @Override
     protected Attachment linkAttachment(String documentId, String documentType, User user, String attachmentContentId) {
@@ -406,10 +412,63 @@ public class ProjectPortlet extends FossologyAwarePortlet {
             prepareProjectDuplicate(request);
             include("/html/projects/edit.jsp", request, response);
         } else {
+            prepareStandardView(request);
             super.doView(request, response);
         }
 
     }
+
+    private void prepareStandardView(RenderRequest request) throws IOException {
+        log.info("in prepareStandardView");
+        String searchtext = request.getParameter(KEY_SEARCH_TEXT);
+
+
+        String searchfilter = request.getParameter(KEY_SEARCH_FILTER_TEXT);
+
+        Map<String, Set<String>> filterMap = new HashMap<>();
+
+        for (Projects._Fields filteredField : projectFilteredFields) {
+            String parameter = request.getParameter(filteredField.toString());
+            if (!isNullOrEmpty(parameter)) {
+                filterMap.put(filteredField.getFieldName(), CommonUtils.splitToSet(parameter));
+            }
+            request.setAttribute(filteredField.getFieldName(), nullToEmpty(parameter));
+        }
+
+        List<Project> projectList;
+
+        try {
+            final User user = UserCacheHolder.getUserFromRequest(request);
+            ProjectService.Iface projectClient = thriftClients.makeProjectClient();
+
+            if (isNullOrEmpty(searchtext) && filterMap.isEmpty()) {
+                ProjectList = projectClient.getProjectSummary(user);
+            } else {
+                projectList = projectClient.refineSearch(searchtext, filterMap);
+            }
+
+
+        } catch (TException e) {
+            log.error("Could not search projects in backend ", e);
+            projectsList = Collections.emptyList();
+        }
+
+        //Set<String> vendorNames;
+
+        //try {
+        //    vendorNames = thriftClients.makeVendorClient().getAllVendorNames();
+        //} catch (TException e) {
+        //    log.error("Problem retrieving all the Vendor names");
+        //    vendorNames = Collections.emptySet();
+        }
+
+        //request.setAttribute(VENDOR_LIST, new ThriftJsonSerializer().toJson(vendorNames));
+        request.setAttribute(PROJECT_LIST, projectList);
+        request.setAttribute(KEY_SEARCH_TEXT, searchtext);
+        request.setAttribute(KEY_SEARCH_FILTER_TEXT, searchfilter);
+
+    }
+
 
     private void prepareDetailView(RenderRequest request, RenderResponse response) throws IOException, PortletException {
         User user = UserCacheHolder.getUserFromRequest(request);
