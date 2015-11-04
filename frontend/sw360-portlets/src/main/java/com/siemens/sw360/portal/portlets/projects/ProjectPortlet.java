@@ -460,7 +460,7 @@ public class ProjectPortlet extends FossologyAwarePortlet {
         //} catch (TException e) {
         //    log.error("Problem retrieving all the Vendor names");
         //    vendorNames = Collections.emptySet();
-        }
+
 
         //request.setAttribute(VENDOR_LIST, new ThriftJsonSerializer().toJson(vendorNames));
         request.setAttribute(PROJECT_LIST, projectList);
