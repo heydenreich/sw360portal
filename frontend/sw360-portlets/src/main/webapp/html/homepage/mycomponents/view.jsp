@@ -49,9 +49,10 @@
             var Releasename = "";
             var CReleases = new Array();
             <core_rt:forEach items="${component.releases}" var="crelease">
-                CReleases.add("${crelease}");
+                CReleases.push("${crelease}");
             </core_rt:forEach>
             alert(CReleases);
+            alert(CReleases.length);
 
         result.push({
             "DT_RowId": "${component.id}",
