@@ -53,6 +53,8 @@
     <portlet:param name="<%=PortalConstants.ACTION%>" value='<%=PortalConstants.FOSSOLOGY_SEND%>'/>
 </portlet:resourceURL>
 
+<portlet:actionURL var="applyFiltersURL" name="applyFilters">
+</portlet:actionURL>
 
 <div id="header"></div>
 <p class="pageHeader">
