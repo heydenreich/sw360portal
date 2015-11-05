@@ -50,8 +50,8 @@ public class ProjectExporter extends ExcelExporter<Project> {
             .add("Project State")
             .add("Created by")
             .add("Creation Date")
-            .add("Project Manager Name")
-            .add("Project Manager Email")
+            .add("Project Responsible")
+            .add("Project Lead Architect")
             .add("Business Unit")
             .add("Releases")
             .build();
@@ -84,10 +84,10 @@ public class ProjectExporter extends ExcelExporter<Project> {
 
             row.add(nullToEmpty(project.id));
             row.add(nullToEmpty(project.name));
-            row.add("Mainline");
+            row.add(nullToEmpty(project.state));
             row.add(nullToEmpty(project.createdBy));
             row.add(nullToEmpty(project.createdOn));
-            row.add("");
+            row.add(nullToEmpty(project.projectResponsible));
             row.add(nullToEmpty(project.leadArchitect));
             row.add(nullToEmpty(project.businessUnit));
             row.add(joinStrings(getReleases(project.releaseIds)));
