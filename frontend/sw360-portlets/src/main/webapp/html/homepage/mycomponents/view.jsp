@@ -53,7 +53,7 @@
             } else {
                 RID = "${component.releases[0]}";
             }
-            alert(component.releases);
+            alert("${component.releases}");
         result.push({
             "DT_RowId": "${component.id}",
             "0": "<sw360:DisplayComponentLink component="${component}"/>",
