@@ -84,7 +84,7 @@ public class ProjectExporter extends ExcelExporter<Project> {
 
             row.add(nullToEmpty(project.id));
             row.add(nullToEmpty(project.name));
-            row.add(nullToEmpty(project.state));
+            row.add(nullToEmpty(project.state.toString()));
             row.add(nullToEmpty(project.createdBy));
             row.add(nullToEmpty(project.createdOn));
             row.add(nullToEmpty(project.projectResponsible));
