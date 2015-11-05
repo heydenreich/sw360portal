@@ -47,12 +47,13 @@
         <core_rt:forEach items="${components}" var="component">
         var RID = "0";
         var count = "${component.releases.size()}";
+            alert(count);
             if (count > 1) {
                 RID = "Multiple Releases"
             } else {
                 RID = "${component.releases[0]}";
             }
-
+            alert(component.releases);
         result.push({
             "DT_RowId": "${component.id}",
             "0": "<sw360:DisplayComponentLink component="${component}"/>",
