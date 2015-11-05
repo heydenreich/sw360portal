@@ -666,6 +666,13 @@ public class ProjectPortlet extends FossologyAwarePortlet {
             log.error("Error updating project in backend!", e);
         }
     }
-
+    @UsedAsLiferayAction
+    public void applyFilters(ActionRequest request, ActionResponse response) throws PortletException, IOException {
+        response.setRenderParameter(KEY_SEARCH_TEXT, nullToEmpty(request.getParameter(KEY_SEARCH_TEXT)));
+        response.setRenderParameter(KEY_SEARCH_FILTER_TEXT, nullToEmpty(request.getParameter(KEY_SEARCH_FILTER_TEXT)));
+        for (Project._Fields projectFilteredField : projectFilteredFields) {
+            response.setRenderParameter(projectFilteredField.toString(), nullToEmpty(request.getParameter(projectFilteredField.toString())));
+        }
+    }
 
 }
