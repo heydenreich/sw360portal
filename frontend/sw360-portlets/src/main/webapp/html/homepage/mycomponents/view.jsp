@@ -45,25 +45,19 @@
         var result = [];
 
         <core_rt:forEach items="${components}" var="component">
-        var Releasename = "";
-        var CReleases = ${component.releases};
-        if (CReleases != null) {
+
+            var Releasename = "";
+            var CReleases = new Array();
+            <core_rt:forEach items="${component.releases}" var="crelease">
+                CReleases.add("${crelease}");
+            </core_rt:forEach>
             alert(CReleases);
-            if (CReleases.size() > 1) {
-                Releasename = "<i>Multiple Releases</i>";
-            } else {
-                if (CReleases.size() != 0) {
-                  Releasename = CReleases[0].name;
-                }
-            }
-        } else {
-            alert("releases not defined");
-        }
+
         result.push({
             "DT_RowId": "${component.id}",
             "0": "<sw360:DisplayComponentLink component="${component}"/>",
             "1": '<sw360:out value="${component.description}" maxChar="30"/>',
-            "2": Releasename
+            "2": ""
         });
         </core_rt:forEach>
 
