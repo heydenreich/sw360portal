@@ -21,7 +21,9 @@ import com.siemens.sw360.datahandler.thrift.projects.ProjectService;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.server.TServlet;
 
+
 import java.net.MalformedURLException;
+import java.io.IOException;
 
 /**
  * Thrift Servlet instantiation
