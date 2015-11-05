@@ -28,6 +28,10 @@
 <jsp:useBean id="components" type="java.util.List<com.siemens.sw360.datahandler.thrift.components.Component>"
              class="java.util.ArrayList" scope="request"/>
 
+<jsp:useBean id="releaseList" type="java.util.List<com.siemens.sw360.datahandler.thrift.components.Release>"
+             scope="request"/>
+
+
 <div class="homepageheading">
     My Components
 </div>
@@ -48,9 +52,9 @@
 
             var Releasename = "";
             var CReleases = new Array();
-            Size of components array ${component.releases}
+            Size of components array ${releaseList}
 
-            <core_rt:forEach items="${component.releases}" var="crelease">
+            <core_rt:forEach items="${releaseList}" var="crelease">
                 alert("ich bin hier: "+ ${crelease.name}");
                 CReleases.push("${crelease}");
             </core_rt:forEach>
