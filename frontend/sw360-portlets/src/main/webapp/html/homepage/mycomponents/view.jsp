@@ -46,7 +46,7 @@
 
         <core_rt:forEach items="${components}" var="component">
         var RID = "0";
-        var count = ${component.releases.size()};
+        var count = "${component.releases.size()}";
             if (count > 1) {
                 RID = "Multiple Releases"
             } else {
