@@ -98,7 +98,7 @@
     </tr>
     <tr>
         <td>Tag:</td>
-        <td><sw360:DisplayEnum value="${project.tag}"/></td>
+        <td><sw360:out value="${project.tag}"/></td>
     </tr>
 </table>
 
