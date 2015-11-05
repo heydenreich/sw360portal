@@ -45,20 +45,19 @@
         var result = [];
 
         <core_rt:forEach items="${components}" var="component">
-        var RID = "0";
-        var count = "${component.releases.size()}";
-            alert(count);
+        var Releasename = "";
+        var count = "${component.releasesSize}";
             if (count > 1) {
-                RID = "Multiple Releases"
+                Releasename = "<i>Multiple Releases</i>"
             } else {
-                RID = "${component.releases[0]}";
+                Releasename = "${component.releases[0].name}";
             }
-            alert("${component.releases}");
+
         result.push({
             "DT_RowId": "${component.id}",
             "0": "<sw360:DisplayComponentLink component="${component}"/>",
             "1": '<sw360:out value="${component.description}" maxChar="30"/>',
-            "2": RID
+            "2": Releasename
         });
         </core_rt:forEach>
 
