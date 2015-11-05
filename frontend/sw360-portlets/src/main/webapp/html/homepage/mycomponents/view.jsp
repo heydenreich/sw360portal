@@ -56,6 +56,8 @@
                   Releasename = CReleases[0].name;
                 }
             }
+        } else {
+            alert("releases not defined");
         }
         result.push({
             "DT_RowId": "${component.id}",
