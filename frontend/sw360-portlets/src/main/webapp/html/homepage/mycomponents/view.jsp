@@ -48,7 +48,8 @@
         result.push({
             "DT_RowId": "${component.id}",
             "0": "<sw360:DisplayComponentLink component="${component}"/>",
-            "1": '<sw360:out value="${component.description}" maxChar="30"/>'
+            "1": '<sw360:out value="${component.description}" maxChar="30"/>',
+            "2": '<sw360:out value="${component.releases[0]}" maxChar="15" />'
         });
         </core_rt:forEach>
 
@@ -59,6 +60,7 @@
             columns: [
                 {"title": "Component Name"},
                 {"title": "Description"},
+                {"title": "ReleaseID"}
             ]
         });
 
