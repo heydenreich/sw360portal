@@ -57,7 +57,7 @@
             "DT_RowId": "${component.id}",
             "0": "<sw360:DisplayComponentLink component="${component}"/>",
             "1": '<sw360:out value="${component.description}" maxChar="30"/>',
-            "2": '<sw360:out value=' + RID + ' maxChar="15" />'
+            "2": RID
         });
         </core_rt:forEach>
 
