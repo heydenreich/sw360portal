@@ -102,17 +102,39 @@
             <tr>
                 <td>
                     <label for="project_name">Project Name</label>
-                    <input type="text" class="searchbar" name="<portlet:namespace/><%=PortalConstants.KEY_SEARCH_TEXT%>"
+                    <input type="text" style="width: 90%; padding: 5px; color: gray;height:20px;" name="<portlet:namespace/><%=PortalConstants.KEY_SEARCH_TEXT%>"
                            value="${searchtext}" id="project_name">
                 </td>
             </tr>
             <tr>
                 <td>
+                    <label for="project_type">Project Type</label>
+                    <input type="text" style="width: 90%; padding: 5px; color: gray;height:20px;" name="<portlet:namespace/><%=Project._Fields.PROJECT_TYPE%>"
+                           value="${projectType}" id="project_type">
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="project_responsible">Project Responsible</label>
-                    <input type="text" class="searchbar" name="<portlet:namespace/><%=Project._Fields.PROJECT_RESPONSIBLE%>"
+                    <input type="text" style="width: 90%; padding: 5px; color: gray;height:20px;" name="<portlet:namespace/><%=Project._Fields.PROJECT_RESPONSIBLE%>"
                            value="${projectResponsible}" id="project_responsible">
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="business_unit">Business Unit</label>
+                    <input type="text" style="width: 90%; padding: 5px; color: gray;height:20px;" name="<portlet:namespace/><%=Project._Fields.BUSINESS_UNIT%>"
+                           value="${businessUnit}" id="business_unit">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="state">State</label>
+                    <input type="text" style="width: 90%; padding: 5px; color: gray;height:20px;" name="<portlet:namespace/><%=Project._Fields.STATE%>"
+                           value="${state}" id="state">
+                </td>
+            </tr>
+
             </tbody>
         </table>
         <br/>
