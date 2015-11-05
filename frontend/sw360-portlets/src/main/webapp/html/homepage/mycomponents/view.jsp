@@ -48,6 +48,8 @@
 
             var Releasename = "";
             var CReleases = new Array();
+            // Size of components array ${component.releases.size()}
+
             <core_rt:forEach items="${component.releases}" var="crelease">
                 alert("ich bin hier: "+ ${crelease.name}");
                 CReleases.push("${crelease}");
