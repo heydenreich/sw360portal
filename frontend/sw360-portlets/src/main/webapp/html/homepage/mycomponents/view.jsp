@@ -50,7 +50,7 @@
         if (CReleases != null) {
             alert(CReleases);
             if (CReleases.size() > 1) {
-                Releasename = "<i>Multiple Releases</i>"
+                Releasename = "<i>Multiple Releases</i>";
             } else {
                 if (CReleases.size() != 0) {
                   Releasename = CReleases[0].name;
