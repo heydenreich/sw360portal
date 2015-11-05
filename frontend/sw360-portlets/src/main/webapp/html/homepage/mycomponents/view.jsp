@@ -49,7 +49,7 @@
             var Releasename = "";
             var CReleases = new Array();
             <core_rt:forEach items="${component.releases}" var="crelease">
-                alert("${crelease.name}");
+                alert("ich bin hier: "+ ${crelease.name}");
                 CReleases.push("${crelease}");
             </core_rt:forEach>
             alert(CReleases);
