@@ -31,6 +31,7 @@ import com.siemens.sw360.datahandler.db.ProjectDatabaseHandler;
 import com.siemens.sw360.datahandler.db.ProjectSearchHandler;
 import org.apache.thrift.TException;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +50,7 @@ public class ProjectHandler implements ProjectService.Iface {
     private final ProjectDatabaseHandler handler;
     private final ProjectSearchHandler searchHandler;
 
-    ProjectHandler() throws MalformedURLException {
+    ProjectHandler() throws MalformedURLException, IOException {
         handler = new ProjectDatabaseHandler(DatabaseSettings.COUCH_DB_URL, DatabaseSettings.COUCH_DB_DATABASE, DatabaseSettings.COUCH_DB_ATTACHMENTS);
         searchHandler = new ProjectSearchHandler(DatabaseSettings.COUCH_DB_URL,DatabaseSettings.COUCH_DB_DATABASE);
     }
