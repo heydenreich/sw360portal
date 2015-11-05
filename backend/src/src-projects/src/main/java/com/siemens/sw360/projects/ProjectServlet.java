@@ -31,7 +31,7 @@ import java.net.MalformedURLException;
  */
 public class ProjectServlet extends TServlet {
 
-    public ProjectServlet() throws MalformedURLException {
+    public ProjectServlet() throws MalformedURLException, IOException {
         // Create a service processor using the provided handler
         super(new ProjectService.Processor<>(new ProjectHandler()), new TCompactProtocol.Factory());
     }
