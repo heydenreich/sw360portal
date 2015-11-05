@@ -134,6 +134,13 @@
                            value="${state}" id="state">
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="tag">Tag</label>
+                    <input type="text" style="width: 90%; padding: 5px; color: gray;height:20px;" name="<portlet:namespace/><%=Project._Fields.TAG%>"
+                           value="${tag}" id="tag">
+                </td>
+            </tr>
 
             </tbody>
         </table>
