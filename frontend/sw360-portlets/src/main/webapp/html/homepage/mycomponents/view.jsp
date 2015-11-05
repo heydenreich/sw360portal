@@ -45,11 +45,19 @@
         var result = [];
 
         <core_rt:forEach items="${components}" var="component">
+        var RID = "0";
+        var count = ${component.releases.size()};
+            if (count > 1) {
+                RID = "Multiple Releases"
+            } else {
+                RID = ${component.releases[1]};
+            }
+
         result.push({
             "DT_RowId": "${component.id}",
             "0": "<sw360:DisplayComponentLink component="${component}"/>",
             "1": '<sw360:out value="${component.description}" maxChar="30"/>',
-            "2": '<sw360:out value="${component.releases[0]}" maxChar="15" />'
+            "2": '<sw360:out value=' + RID + ' maxChar="15" />'
         });
         </core_rt:forEach>
 
