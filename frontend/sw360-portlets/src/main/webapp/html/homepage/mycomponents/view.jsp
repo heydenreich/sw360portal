@@ -50,7 +50,7 @@
             if (count > 1) {
                 RID = "Multiple Releases"
             } else {
-                RID = ${component.releases[1]};
+                RID = ${component.releases[0]};
             }
 
         result.push({
