@@ -19,6 +19,7 @@
 <%@include file="/html/init.jsp" %>
 
 <%@ page import="com.liferay.portlet.PortletURLFactoryUtil" %>
+<%@ page import="com.siemens.sw360.datahandler.thrift.projects.Project" %>
 <%@ page import="com.siemens.sw360.portal.common.PortalConstants" %>
 <%@ page import="javax.portlet.PortletRequest" %>
 
@@ -65,6 +66,7 @@
 
 
 <div id="searchInput" class="content1">
+    <form action="<%=applyFiltersURL%>" method="post">
     <table>
         <thead>
         <tr>
@@ -85,6 +87,35 @@
         </tr>
         </tbody>
     </table>
+        <br/>
+        <table>
+            <thead>
+            <tr>
+                <th class="infoheading">
+                    Filters
+                </th>
+            </tr>
+            </thead>
+            <tbody style="background-color: #f8f7f7; border: none;">
+            <tr>
+                <td>
+                    <label for="project_name">Project Name</label>
+                    <input type="text" class="searchbar" name="<portlet:namespace/><%=PortalConstants.KEY_SEARCH_TEXT%>"
+                           value="${searchtext}" id="project_name">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="project_responsible">Project Responsible</label>
+                    <input type="text" class="searchbar" name="<portlet:namespace/><%=Project._Fields.PROJECT_RESPONSIBLE%>"
+                           value="${projectResponsible}" id="project_responsible">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br/>
+        <input type="submit" class="addButton" value="Apply Filters">
+    </form>
 </div>
 <div id="projectsTableDiv" class="content2">
     <table id="projectsTable" cellpadding="0" cellspacing="0" border="0" class="display">
