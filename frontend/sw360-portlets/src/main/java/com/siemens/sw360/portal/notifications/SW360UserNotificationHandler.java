@@ -27,15 +27,15 @@ package com.siemens.sw360.portal.notifications;
     public class SW360UserNotificationHandler extends
             BaseUserNotificationHandler {
 
-        //public static final String PORTLET_ID = "components_WAR_componentsportlet";
-        public static final String PORTLET_ID = "mycomponents_WAR_sw360portlet";
+        public static final String PORTLET_ID = "components_WAR_sw360portlet";
+//        public static final String PORTLET_ID = "mycomponents_WAR_sw360portlet";
 
         public SW360UserNotificationHandler() {
 
             setPortletId(com.siemens.sw360.portal.notifications.SW360UserNotificationHandler.PORTLET_ID);
 
         }
-/**
+
         @Override
         protected String getBody(UserNotificationEvent userNotificationEvent,
                                  ServiceContext serviceContext) throws Exception {
@@ -112,7 +112,6 @@ package com.siemens.sw360.portal.notifications;
             sb.append("[$IGNORE_URL$]\">[$IGNORE$]</a></div>");
             return sb.toString();
         }
-        */
 
     }
 

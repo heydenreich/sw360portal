@@ -723,7 +723,7 @@ public class ComponentPortlet extends FossologyAwarePortlet {
                         ServiceContext serviceContext = ServiceContextFactory.getInstance(request);
                         JSONObject payloadJSON = JSONFactoryUtil.createJSONObject();
                         payloadJSON.put("userId", userId);
-                        payloadJSON.put("additionalData", "Your notification was added!");
+                        payloadJSON.put("additionalData", successMsg);
 
 
                         UserNotificationEventLocalServiceUtil.addUserNotificationEvent(userId,
