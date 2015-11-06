@@ -50,16 +50,7 @@ public class ProjectSummary extends DocumentSummary<Project> {
         return copy;
     }
 
-    private static void setSummaryFields(Project document, Project copy) {
-//        copyField(document, copy, _Fields.CREATED_ON);
-//        copyField(document, copy, _Fields.CREATED_BY);
-//        copyField(document, copy, _Fields.LEAD_ARCHITECT);
-//        copyField(document, copy, _Fields.BUSINESS_UNIT);
-//        copyField(document, copy, _Fields.DESCRIPTION);
-//        copyField(document, copy, _Fields.STATE);
-//        copyField(document, copy, _Fields.PROJECT_RESPONSIBLE);
-//        copyField(document, copy, _Fields.TAG);
-
+    protected static void setSummaryFields(Project document, Project copy) {
         for (_Fields renderedField : ProjectExporter.RENDERED_FIELDS) {
 
             switch (renderedField) {
@@ -74,14 +65,9 @@ public class ProjectSummary extends DocumentSummary<Project> {
             }
 
         }
-
-//
-//        // Add release ids
-//        if (document.isSetReleaseIdToUsage())
-//            copy.setReleaseIds(document.releaseIdToUsage.keySet());
     }
 
-    private static void setExportSummaryFields(Project document, Project copy) {
+    protected static void setExportSummaryFields(Project document, Project copy) {
         copyField(document, copy, _Fields.CREATED_ON);
         copyField(document, copy, _Fields.CREATED_BY);
         copyField(document, copy, _Fields.LEAD_ARCHITECT);

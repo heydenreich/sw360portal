@@ -61,7 +61,7 @@ public class ProjectExporter extends ExcelExporter<Project> {
 
     private static final Logger log = Logger.getLogger(ProjectExporter.class);
 
-    private static final List<String> HEADERS = ImmutableList.<String>builder()
+    protected static final List<String> HEADERS = ImmutableList.<String>builder()
             .add("Project ID")
             .add("Project Name")
             .add("Project State")
@@ -105,25 +105,15 @@ public class ProjectExporter extends ExcelExporter<Project> {
 
                 if(fieldValue instanceof TEnum) {
                     row.add(nullToEmpty(ThriftEnumUtils.enumToString((TEnum) fieldValue)));
-                } else if (fieldValue instanceof Set) {
-                    row.add(joinStrings(getReleases((Set) fieldValue)));
+                } else if (fieldValue.equals(RELEASE_IDS)) {
+                    row.add(joinStrings(getReleases(project.releaseIds)));
                 } else if (fieldValue instanceof String ) {
                     row.add(nullToEmpty((String)fieldValue));
+                } else {
+                    row.add("");
                 }
 
             }
-
-//
-//            row.add(nullToEmpty(project.id));
-//            row.add(nullToEmpty(project.name));
-//            row.add(nullToEmpty(ThriftEnumUtils.enumToString(project.state)));
-//            row.add(nullToEmpty(project.createdBy));
-//            row.add(nullToEmpty(project.createdOn));
-//            row.add(nullToEmpty(project.projectResponsible));
-//            row.add(nullToEmpty(project.leadArchitect));
-//            row.add(nullToEmpty(project.tag));
-//            row.add(nullToEmpty(project.businessUnit));
-//            row.add(joinStrings(getReleases(project.releaseIds)));
 
             return row;
         }
