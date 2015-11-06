@@ -104,12 +104,8 @@ public class ProjectExporter extends ExcelExporter<Project> {
             for (Project._Fields renderedField : RENDERED_FIELDS) {
                 Object fieldValue = project.getFieldValue(renderedField);
 
-                if (fieldValue.equals(RELEASE_IDS)) {
-                    Set<String> pr = project.releaseIds;
-                    List<String> l = getReleases(pr);
-                    String s = joinStrings(l);
-                    row.add(s);
-                    //row.add(joinStrings(getReleases(project.releaseIds)));
+                if (renderedField.equals(RELEASE_IDS)) {
+                    row.add(joinStrings(getReleases(project.releaseIds)));
                 }
                 else if(fieldValue instanceof TEnum) {
                     row.add(nullToEmpty(ThriftEnumUtils.enumToString((TEnum) fieldValue)));
