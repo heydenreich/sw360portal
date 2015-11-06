@@ -18,10 +18,12 @@
 package com.siemens.sw360.exporter;
 
 import com.google.common.collect.ImmutableList;
+import com.siemens.sw360.datahandler.common.ThriftEnumUtils;
 import com.siemens.sw360.datahandler.thrift.components.ComponentService;
 import com.siemens.sw360.datahandler.thrift.components.Release;
 import com.siemens.sw360.datahandler.thrift.projects.Project;
 import org.apache.log4j.Logger;
+import org.apache.thrift.TEnum;
 import org.apache.thrift.TException;
 
 import java.util.ArrayList;
@@ -42,8 +44,6 @@ public class ProjectExporter extends ExcelExporter<Project> {
 
     private static final Logger log = Logger.getLogger(ProjectExporter.class);
 
-    private static final int COLUMNS = 9;
-
     private static final List<String> HEADERS = ImmutableList.<String>builder()
             .add("Project ID")
             .add("Project Name")
@@ -52,6 +52,7 @@ public class ProjectExporter extends ExcelExporter<Project> {
             .add("Creation Date")
             .add("Project Responsible")
             .add("Project Lead Architect")
+            .add("Project Tag")
             .add("Business Unit")
             .add("Releases")
             .build();
@@ -70,7 +71,7 @@ public class ProjectExporter extends ExcelExporter<Project> {
 
         @Override
         public int getColumns() {
-            return COLUMNS;
+            return HEADERS.size();
         }
 
         @Override
@@ -80,15 +81,16 @@ public class ProjectExporter extends ExcelExporter<Project> {
 
         @Override
         public List<String> makeRow(Project project) {
-            List<String> row = new ArrayList<>(COLUMNS);
+            List<String> row = new ArrayList<>(HEADERS.size());
 
             row.add(nullToEmpty(project.id));
             row.add(nullToEmpty(project.name));
-            row.add(nullToEmpty(project.state.toString()));
+            row.add(nullToEmpty(ThriftEnumUtils.enumToString(project.state)));
             row.add(nullToEmpty(project.createdBy));
             row.add(nullToEmpty(project.createdOn));
             row.add(nullToEmpty(project.projectResponsible));
             row.add(nullToEmpty(project.leadArchitect));
+            row.add(nullToEmpty(project.tag));
             row.add(nullToEmpty(project.businessUnit));
             row.add(joinStrings(getReleases(project.releaseIds)));
 
