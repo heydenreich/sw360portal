@@ -31,7 +31,7 @@ public class ProjectSummary extends DocumentSummary<Project> {
 
     @Override
     protected Project summary(SummaryType type, Project document) {
-        // Copy required details
+        // Copy required detailsC
         Project copy = new Project();
         copyField(document, copy, _Fields.ID);
         copyField(document, copy, _Fields.NAME);
@@ -41,6 +41,7 @@ public class ProjectSummary extends DocumentSummary<Project> {
             case EXPORT_SUMMARY:
                 setExportSummaryFields(document, copy);
             case SUMMARY:
+                setExportSummaryFields(document, copy);
                 setSummaryFields(document, copy);
             default:
                 break;
@@ -53,6 +54,7 @@ public class ProjectSummary extends DocumentSummary<Project> {
         copyField(document, copy, _Fields.DESCRIPTION);
         copyField(document, copy, _Fields.STATE);
         copyField(document, copy, _Fields.PROJECT_RESPONSIBLE);
+        copyField(document, copy, _Fields.TAG);
         // Add release ids
         if (document.isSetReleaseIdToUsage())
             copy.setReleaseIds(document.releaseIdToUsage.keySet());
