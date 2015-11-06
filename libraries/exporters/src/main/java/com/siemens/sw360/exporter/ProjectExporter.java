@@ -33,6 +33,7 @@ import java.util.Set;
 
 import static com.google.common.base.Strings.nullToEmpty;
 import static com.siemens.sw360.datahandler.common.CommonUtils.joinStrings;
+import static com.siemens.sw360.datahandler.common.CommonUtils.nullToEmptySet;
 import static com.siemens.sw360.datahandler.common.SW360Utils.printName;
 import static com.siemens.sw360.datahandler.thrift.projects.Project._Fields.*;
 
@@ -103,12 +104,14 @@ public class ProjectExporter extends ExcelExporter<Project> {
             for (Project._Fields renderedField : RENDERED_FIELDS) {
                 Object fieldValue = project.getFieldValue(renderedField);
 
-                if(fieldValue instanceof TEnum) {
-                    row.add(nullToEmpty(ThriftEnumUtils.enumToString((TEnum) fieldValue)));
-                } else if (fieldValue.equals(RELEASE_IDS)) {
+                if (fieldValue.equals(RELEASE_IDS)) {
                     row.add(joinStrings(getReleases(project.releaseIds)));
-                } else if (fieldValue instanceof String ) {
-                    row.add(nullToEmpty((String)fieldValue));
+                }
+                else if(fieldValue instanceof TEnum) {
+                    row.add(nullToEmpty(ThriftEnumUtils.enumToString((TEnum) fieldValue)));
+                }
+                else if (fieldValue instanceof String ) {
+                    row.add(nullToEmpty((String) fieldValue));
                 } else {
                     row.add("");
                 }
