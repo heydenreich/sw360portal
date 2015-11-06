@@ -34,6 +34,7 @@ import java.util.Set;
 import static com.google.common.base.Strings.nullToEmpty;
 import static com.siemens.sw360.datahandler.common.CommonUtils.joinStrings;
 import static com.siemens.sw360.datahandler.common.SW360Utils.printName;
+import static com.siemens.sw360.datahandler.thrift.projects.Project._Fields.*;
 
 /**
  * Created by bodet on 06/02/15.
@@ -41,6 +42,22 @@ import static com.siemens.sw360.datahandler.common.SW360Utils.printName;
  * @author cedric.bodet@tngtech.com
  */
 public class ProjectExporter extends ExcelExporter<Project> {
+
+
+    public static final List<Project._Fields> RENDERED_FIELDS = ImmutableList.<Project._Fields>builder()
+            .add(ID)
+            .add(NAME)
+            .add(STATE)
+            .add(CREATED_BY)
+            .add(CREATED_ON)
+            .add(PROJECT_RESPONSIBLE)
+            .add(LEAD_ARCHITECT)
+            .add(TAG)
+            .add(BUSINESS_UNIT)
+            .add(RELEASE_IDS)
+            .build();
+
+
 
     private static final Logger log = Logger.getLogger(ProjectExporter.class);
 
@@ -83,16 +100,30 @@ public class ProjectExporter extends ExcelExporter<Project> {
         public List<String> makeRow(Project project) {
             List<String> row = new ArrayList<>(HEADERS.size());
 
-            row.add(nullToEmpty(project.id));
-            row.add(nullToEmpty(project.name));
-            row.add(nullToEmpty(ThriftEnumUtils.enumToString(project.state)));
-            row.add(nullToEmpty(project.createdBy));
-            row.add(nullToEmpty(project.createdOn));
-            row.add(nullToEmpty(project.projectResponsible));
-            row.add(nullToEmpty(project.leadArchitect));
-            row.add(nullToEmpty(project.tag));
-            row.add(nullToEmpty(project.businessUnit));
-            row.add(joinStrings(getReleases(project.releaseIds)));
+            for (Project._Fields renderedField : RENDERED_FIELDS) {
+                Object fieldValue = project.getFieldValue(renderedField);
+
+                if(fieldValue instanceof TEnum) {
+                    row.add(nullToEmpty(ThriftEnumUtils.enumToString((TEnum) fieldValue)));
+                } else if (fieldValue instanceof Set) {
+                    row.add(joinStrings(getReleases((Set) fieldValue)));
+                } else if (fieldValue instanceof String ) {
+                    row.add(nullToEmpty((String)fieldValue));
+                }
+
+            }
+
+//
+//            row.add(nullToEmpty(project.id));
+//            row.add(nullToEmpty(project.name));
+//            row.add(nullToEmpty(ThriftEnumUtils.enumToString(project.state)));
+//            row.add(nullToEmpty(project.createdBy));
+//            row.add(nullToEmpty(project.createdOn));
+//            row.add(nullToEmpty(project.projectResponsible));
+//            row.add(nullToEmpty(project.leadArchitect));
+//            row.add(nullToEmpty(project.tag));
+//            row.add(nullToEmpty(project.businessUnit));
+//            row.add(joinStrings(getReleases(project.releaseIds)));
 
             return row;
         }
