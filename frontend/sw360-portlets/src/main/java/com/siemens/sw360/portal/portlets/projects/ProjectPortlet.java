@@ -72,7 +72,7 @@ public class ProjectPortlet extends FossologyAwarePortlet {
 
     private static final Logger log = Logger.getLogger(ProjectPortlet.class);
 
-    private static final ImmutableList<Project._Fields> projectFilteredFields = ImmutableList.of(Project._Fields.PROJECT_TYPE, Project._Fields.PROJECT_RESPONSIBLE);
+    private static final ImmutableList<Project._Fields> projectFilteredFields = ImmutableList.of(Project._Fields.BUSINESS_UNIT,Project._Fields.PROJECT_TYPE, Project._Fields.PROJECT_RESPONSIBLE,Project._Fields.NAME,Project._Fields.STATE,Project._Fields.TAG);
 
 
 

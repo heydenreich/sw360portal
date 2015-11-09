@@ -26,6 +26,17 @@
 <portlet:defineObjects/>
 <liferay-theme:defineObjects/>
 
+<jsp:useBean id="projectList" type="java.util.List<com.siemens.sw360.datahandler.thrift.projects.Project>"
+             scope="request"/>
+
+<jsp:useBean id="projectType" class="java.lang.String" scope="request"/>
+<jsp:useBean id="projectResponsible" class="java.lang.String" scope="request"/>
+<jsp:useBean id="businessUnit" class="java.lang.String" scope="request"/>
+<jsp:useBean id="tag" class="java.lang.String" scope="request"/>
+<jsp:useBean id="name" class="java.lang.String" scope="request"/>
+<jsp:useBean id="state" class="java.lang.String" scope="request"/>
+<jsp:useBean id="searchtext" class="java.lang.String" scope="request"/>
+<jsp:useBean id="searchfilter" class="java.lang.String" scope="request"/>
 
 <portlet:resourceURL var="exportProjectsURL">
     <portlet:param name="<%=PortalConstants.ACTION%>" value="<%=PortalConstants.EXPORT_TO_EXCEL%>"/>
