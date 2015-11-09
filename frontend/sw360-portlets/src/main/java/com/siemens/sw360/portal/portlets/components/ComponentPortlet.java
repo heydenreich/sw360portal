@@ -258,13 +258,13 @@ public class ComponentPortlet extends FossologyAwarePortlet {
             List<Component> components;
 
             if (isNullOrEmpty(searchText)) {
-                log.info("Entering get Component Summary for Export");
+
                 components = client.getComponentSummaryForExport();
-                log.info("leaving get Component Summary for Export");
+
             } else {
-                log.info("entering search Component Summary for Export");
+
                 components = client.searchComponentForExport(searchText);
-                log.info("leaving search Component Summary for Export");
+
 
             }
 
