@@ -32,11 +32,11 @@ public class ProjectSearchHandler {
 
     private static final Logger log = Logger.getLogger(ComponentSearchHandler.class);
 
-    private static final LuceneSearchView luceneSearchView = new LuceneSearchView("lucene", "components",
+    private static final LuceneSearchView luceneSearchView = new LuceneSearchView("lucene", "projects",
             "function(doc) {" +
                     "    var ret = new Document();" +
                     "    if(!doc.type) return ret;" +
-                    "    if(doc.type != 'component') return ret;" +
+                    "    if(doc.type != 'projects') return ret;" +
                     "    function idx(obj) {" +
                     "        for (var key in obj) {" +
                     "            switch (typeof obj[key]) {" +
@@ -52,7 +52,7 @@ public class ProjectSearchHandler {
                     "        }" +
                     "    };" +
                     "    idx(doc);" +
-                    "    for(var i in doc.categories) {" +
+                    "    for(var i in doc.name) {" +
                     "      ret.add(doc.categories[i], {\"field\": \"categories\"} );" +
                     "    }" +
                     "    for(var i in doc.languages) {" +

@@ -112,9 +112,16 @@
             <tbody style="background-color: #f8f7f7; border: none;">
             <tr>
                 <td>
-                    <label for="project_name">Project Name</label>
+                    <label for="fullText">Full Text</label>
                     <input type="text" style="width: 90%; padding: 5px; color: gray;height:20px;" name="<portlet:namespace/><%=PortalConstants.KEY_SEARCH_TEXT%>"
-                           value="${searchtext}" id="project_name">
+                           value="${searchtext}" id="fullText">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="project_name">Project Name</label>
+                    <input type="text" style="width: 90%; padding: 5px; color: gray;height:20px;" name="<portlet:namespace/><%=Project._Fields.NAME%>"
+                           value="${projectName}" id="project_name">
                 </td>
             </tr>
             <tr>
