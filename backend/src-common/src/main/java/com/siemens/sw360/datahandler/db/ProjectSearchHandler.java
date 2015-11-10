@@ -52,24 +52,24 @@ public class ProjectSearchHandler {
                     "        }" +
                     "    };" +
                     "    idx(doc);" +
-                    "    if(doc.buisnessUnit !== undefined && doc.buisnessUnit != null doc.buisnessUnit.length >0) {  "+
-                    "         ret.add(doc.businessUnit, {\"field\": \"businessUnit\"} );" +
-                    "    }" +
-                    "    if(doc.projectType !== undefined && doc.projectType != null doc.projectType.length >0) {  "+
-                    "      ret.add(doc.projectType, {\"field\": \"projectType\"} );" +
-                    "    }" +
-                    "    if(doc.projectResponsible !== undefined && doc.projectResponsible != null doc.projectResponsible.length >0) {  "+
-                    "      ret.add(doc.projectResponsible, {\"field\": \"projectResponsible\"} );" +
-                    "    }" +
-                    "    if(doc.name !== undefined && doc.name != null doc.name.length >0) {  "+
-                    "      ret.add(doc.name, {\"field\": \"name\"} );" +
-                    "    }" +
+//                    "    if(doc.buisnessUnit !== undefined && doc.buisnessUnit != null doc.buisnessUnit.length >0) {  "+
+//                    "         ret.add(doc.businessUnit, {\"field\": \"businessUnit\"} );" +
+//                    "    }" +
+//                    "    if(doc.projectType !== undefined && doc.projectType != null doc.projectType.length >0) {  "+
+//                    "      ret.add(doc.projectType, {\"field\": \"projectType\"} );" +
+//                    "    }" +
+//                    "    if(doc.projectResponsible !== undefined && doc.projectResponsible != null doc.projectResponsible.length >0) {  "+
+//                    "      ret.add(doc.projectResponsible, {\"field\": \"projectResponsible\"} );" +
+//                    "    }" +
+//                    "    if(doc.name !== undefined && doc.name != null doc.name.length >0) {  "+
+//                    "      ret.add(doc.name, {\"field\": \"name\"} );" +
+//                    "    }" +
                     "    if(doc.state !== undefined && doc.state != null doc.state.length >0) {  "+
                     "      ret.add(doc.state, {\"field\": \"state\"} );" +
                     "    }" +
-                    "    if(doc.tag !== undefined && doc.tag != null doc.tag.length >0) {  "+
-                    "      ret.add(doc.tag, {\"field\": \"tag\"} );" +
-                    "    }" +
+//                    "    if(doc.tag !== undefined && doc.tag != null doc.tag.length >0) {  "+
+//                    "      ret.add(doc.tag, {\"field\": \"tag\"} );" +
+//                    "    }" +
                     "    return ret;" +
                     "}");
 
