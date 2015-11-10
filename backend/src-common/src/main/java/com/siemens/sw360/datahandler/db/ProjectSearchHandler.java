@@ -36,7 +36,7 @@ public class ProjectSearchHandler {
             "function(doc) {" +
                     "    var ret = new Document();" +
                     "    if(!doc.type) return ret;" +
-                    "    if(doc.type != 'projects') return ret;" +
+                    "    if(doc.type != 'project') return ret;" +
                     "    function idx(obj) {" +
                     "        for (var key in obj) {" +
                     "            switch (typeof obj[key]) {" +
