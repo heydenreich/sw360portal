@@ -52,20 +52,23 @@ public class ProjectSearchHandler {
                     "        }" +
                     "    };" +
                     "    idx(doc);" +
-                    "    for(var i in doc.name) {" +
-                    "      ret.add(doc.categories[i], {\"field\": \"categories\"} );" +
+                    "    if(doc.buisnessUnit !== undefined && doc.buisnessUnit != null doc.buisnessUnit.length >0) {  "+
+                    "         ret.add(doc.businessUnit, {\"field\": \"businessUnit\"} );" +
                     "    }" +
-                    "    for(var i in doc.languages) {" +
-                    "      ret.add(doc.languages[i], {\"field\": \"languages\"} );" +
+                    "    if(doc.projectType !== undefined && doc.projectType != null doc.projectType.length >0) {  "+
+                    "      ret.add(doc.projectType, {\"field\": \"projectType\"} );" +
                     "    }" +
-                    "    for(var i in doc.softwarePlatforms) {" +
-                    "      ret.add(doc.softwarePlatforms[i], {\"field\": \"softwarePlatforms\"} );" +
+                    "    if(doc.projectResponsible !== undefined && doc.projectResponsible != null doc.projectResponsible.length >0) {  "+
+                    "      ret.add(doc.projectResponsible, {\"field\": \"projectResponsible\"} );" +
                     "    }" +
-                    "    for(var i in doc.operatingSystems) {" +
-                    "      ret.add(doc.operatingSystems[i], {\"field\": \"operatingSystems\"} );" +
+                    "    if(doc.name !== undefined && doc.name != null doc.name.length >0) {  "+
+                    "      ret.add(doc.name, {\"field\": \"name\"} );" +
                     "    }" +
-                    "    for(var i in doc.vendorNames) {" +
-                    "      ret.add(doc.vendorNames[i], {\"field\": \"vendorNames\"} );" +
+                    "    if(doc.state !== undefined && doc.state != null doc.state.length >0) {  "+
+                    "      ret.add(doc.state, {\"field\": \"state\"} );" +
+                    "    }" +
+                    "    if(doc.tag !== undefined && doc.tag != null doc.tag.length >0) {  "+
+                    "      ret.add(doc.tag, {\"field\": \"tag\"} );" +
                     "    }" +
                     "    return ret;" +
                     "}");
