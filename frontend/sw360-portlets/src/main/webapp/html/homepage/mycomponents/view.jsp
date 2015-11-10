@@ -49,7 +49,9 @@
 
             var Releasename = "";
             var CReleases = new Array();
-            var numReleases = "${component.releasesSize}$";
+            var numReleases = "${component.releasesSize}";
+
+
 
         result.push({
             "DT_RowId": "${component.id}",
