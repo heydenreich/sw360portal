@@ -49,7 +49,8 @@ public class MyComponentsPortlet extends Sw360Portlet {
     @Override
     public void doView(RenderRequest request, RenderResponse response) throws IOException, PortletException {
         List<Component> components;
-        List<String> ReleaseCounter;
+       // List<String> ReleaseCounter;
+        String ReleaseInfo = "";
 
         try {
             final User user = UserCacheHolder.getUserFromRequest(request);
@@ -58,9 +59,11 @@ public class MyComponentsPortlet extends Sw360Portlet {
             // get a list of all releases for each component
             for (Component c: components) {
                 List<Release> releases;
-               // releases = thriftClients.makeComponentClient().getReleaseByComponentId(c.getId());
+                releases = thriftClients.makeComponentClient().getReleasesByComponentId(c.getId(), user);
+                for (Release r: releases)  {
 
-                ;
+                }
+                ReleaseInfo = Long.toString(releases.size()) + " releases";
 
             }
 
@@ -72,7 +75,7 @@ public class MyComponentsPortlet extends Sw360Portlet {
             components = new ArrayList<>();
         }
         request.setAttribute("components",  CommonUtils.nullToEmptyList(components));
-
+        request.setAttribute("releaseinfo", ReleaseInfo);
         super.doView(request, response);
     }
 }
