@@ -48,10 +48,6 @@
 
         <core_rt:forEach items="${components}" var="component">
 
-
-
-
-
         result.push({
             "DT_RowId": "${component.id}",
             "0": "<sw360:DisplayComponentLink component="${component}"/>",

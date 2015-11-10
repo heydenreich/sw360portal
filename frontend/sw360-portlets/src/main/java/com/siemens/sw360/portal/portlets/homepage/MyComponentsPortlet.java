@@ -60,11 +60,12 @@ public class MyComponentsPortlet extends Sw360Portlet {
             for (Component c: components) {
                 List<Release> releases;
                 releases = thriftClients.makeComponentClient().getReleasesByComponentId(c.getId(), user);
-                for (Release r: releases)  {
+                if (releases.size() > 1) {
+                    ReleaseInfo = Long.toString(releases.size()) + " releases";
+                } else if (releases.size() == 1){
 
+                    ReleaseInfo = releases.get(0).getName() + " " + releases.get(0).getVersion();
                 }
-                ReleaseInfo = Long.toString(releases.size()) + " releases";
-
             }
 
 
