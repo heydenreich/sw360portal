@@ -259,8 +259,14 @@
 
        <core_rt:forEach items="${projectList}" var="project">
         result.push({
-            "id": '${project.id}',
-            <%-- "name": "<sw360:DisplayProjectLink project='${project}' />",
+            "id": "1",
+            "name": "name",
+            "description": "blabla",
+            "state": "0",
+            "clearing": "",
+            "responsible":"resp"
+            <%-- "id": '${project.id}',
+            "name": "<sw360:DisplayProjectLink project='${project}' />",
             "description":   "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state": "<sw360:DisplayEnum value='${project.state}'/>",
             "clearing": "'${project.releaseClearingStateSummary}'",
