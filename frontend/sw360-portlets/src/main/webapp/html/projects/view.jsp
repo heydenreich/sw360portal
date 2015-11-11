@@ -254,7 +254,7 @@
 
 
     function createProjectsTable() {
-
+<%--
         var result = [];
 
        <core_rt:forEach items="${projectList}" var="project">
@@ -263,14 +263,8 @@
             "name": "<sw360:DisplayProjectLink project='${project}' />",
             "description": "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state":"<sw360:DisplayEnum value='${project.state}'/>",
-            "clearing": "",
-            "responsible":"<sw360:DisplayUserEmail email="${project.projectResponsible}"/>"
-            <%-- "id": '${project.id}',
-            "name": "<sw360:DisplayProjectLink project='${project}' />",
-            "description":   "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
-            "state": "<sw360:DisplayEnum value='${project.state}'/>",
             "clearing": "'${project.releaseClearingStateSummary}'",
-             "responsible":"<sw360:DisplayUserEmail email='${project.projectResponsible}'/>" --%>
+            "responsible":"<sw360:DisplayUserEmail email="${project.projectResponsible}"/>"
          });
          </core_rt:forEach>
 
@@ -291,7 +285,7 @@
 
          $('#projectsTable_filter').hide();
          $('#projectsTable_first').hide();
-         $('#projectsTable_last').hide();
+         $('#projectsTable_last').hide();  --%>
      }
 
 
