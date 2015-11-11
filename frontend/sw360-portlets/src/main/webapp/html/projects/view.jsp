@@ -261,10 +261,10 @@
         result.push({
             "id": '${project.id}',
             "name": "<sw360:DisplayProjectLink project='${project}' />",
-            "description": "blabla",
+            "description": "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state": "0",
             "clearing": "",
-            "responsible":"resp"
+            "responsible":"<sw360:DisplayUserEmail email='${project.projectResponsible}'/>"
             <%-- "id": '${project.id}',
             "name": "<sw360:DisplayProjectLink project='${project}' />",
             "description":   "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
