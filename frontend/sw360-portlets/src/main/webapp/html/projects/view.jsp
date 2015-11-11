@@ -259,8 +259,8 @@
 
        <core_rt:forEach items="${projectList}" var="project">
         result.push({
-            "id": "1",
-            "name": "name",
+            "id": '${project.id}',
+            "name": "<sw360:DisplayProjectLink project='${project}' />",
             "description": "blabla",
             "state": "0",
             "clearing": "",
