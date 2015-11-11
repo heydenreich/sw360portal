@@ -132,9 +132,7 @@ public class ProjectPortlet extends FossologyAwarePortlet {
     public void serveResource(ResourceRequest request, ResourceResponse response) throws IOException, PortletException {
         String action = request.getParameter(PortalConstants.ACTION);
 
-        if (PortalConstants.PROJECT_LIST.equals(action)) {
-            serveListProjects(request, response);
-        } else if (PortalConstants.VIEW_LINKED_PROJECTS.equals(action)) {
+        if (PortalConstants.VIEW_LINKED_PROJECTS.equals(action)) {
             serveLinkedProjects(request, response);
         } else if (PortalConstants.REMOVE_PROJECT.equals(action)) {
             serveRemoveProject(request, response);
@@ -170,10 +168,6 @@ public class ProjectPortlet extends FossologyAwarePortlet {
                 log.error("cannot serialize json", e);
             }
         }
-
-        jsonResponse.put("data", data);
-
-        writeJSON(request, response, jsonResponse);
     }
 
     @Override

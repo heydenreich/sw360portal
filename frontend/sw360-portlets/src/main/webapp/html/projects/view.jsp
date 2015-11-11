@@ -112,9 +112,9 @@
             <tbody style="background-color: #f8f7f7; border: none;">
             <tr>
                 <td>
-                    <label for="fullText">Full Text</label>
+                    <label for="nameSearch">Name Search</label>
                     <input type="text" style="width: 90%; padding: 5px; color: gray;height:20px;" name="<portlet:namespace/><%=PortalConstants.KEY_SEARCH_TEXT%>"
-                           value="${searchtext}" id="fullText">
+                           value="${searchtext}" id="nameSearch">
                 </td>
             </tr>
             <tr>
@@ -251,26 +251,53 @@
                 "</span>";
     }
 
+
+
     function createProjectsTable() {
-        oTable = $('#projectsTable').DataTable({
-            ajax: {url: '<%=projectListAjaxURL%>', data: objectNamespacerOf('<portlet:namespace/>')},
-            columns: [
-                {title: "Project Name", data: "name", render: {display: renderProjectNameLink}},
-                {title: "Description", data: "description", render: {display: displayEscaped}},
-                {title: "Project Responsible", data: "responsible", render: {display: renderUserEmail}},
+
+        var result = [];
+
+        <core_rt:forEach items="${projectList}" var="project">
+        result.push({
+            "id": '${project.id}',
+            "name": "<sw360:DisplayProjectLink project='${project}' />",
+            "description":   "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
+            "state": "<sw360:DisplayEnum value='${project.state}'/>",
+            "clearing": "'${project.releaseClearingStateSummary}'",
+            "responsible":"<sw360:DisplayUser user='${project.projectResponsible}'/>"
+        });
+        </core_rt:forEach>
+
+        oTable = $('#componentsTable').DataTable({
+            "sPaginationType": "full_numbers",
+            "aaData": result,
+            search: {smart: false},
+            "aoColumns": [
+                {title: "Project Name", data: "name"}, //, render: {display: renderProjectNameLink}
+                {title: "Description", data: "description"}, //, render: {display: displayEscaped}
+                {title: "Project Responsible", data: "responsible"}, //, render: {display: renderUserEmail}
                 {title: "State", data: "state", render: {display: displayEscaped}},
                 {title: "Clearing Status", data: "clearing", render: {display: renderClearingStatus}},
                 {title: "Actions", data: "id", render: {display: renderProjectActions}}
-            ],
-            pagingType: "full_numbers",
-            search: {smart: false}
+            ]
         });
-
+        
         $('#projectsTable_filter').hide();
         $('#projectsTable_first').hide();
         $('#projectsTable_last').hide();
     }
 
+
+    function createUrl_comp(paramId, paramVal) {
+        var portletURL = PortletURL.createURL('<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>')
+                .setParameter('<%=PortalConstants.PAGENAME%>', '<%=PortalConstants.PAGENAME_DETAIL%>').setParameter(paramId, paramVal);
+        return portletURL.toString();
+    }
+
+    function createDetailURLfromProjectId(paramVal) {
+        return createUrl_comp('<%=PortalConstants.PROJECT_ID%>', paramVal);
+    }
+    
     function exportExcel() {
         var portletURL = PortletURL.createURL('<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>')
                 .setParameter('<%=PortalConstants.ACTION%>', '<%=PortalConstants.EXPORT_TO_EXCEL%>');
