@@ -263,144 +263,144 @@
             "name": "<sw360:DisplayProjectLink project='${project}' />",
             "description":   "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state": "<sw360:DisplayEnum value='${project.state}'/>",
-            "clearing": "'${project.releaseClearingStateSummary}'",
-            "responsible":"<sw360:DisplayUserEmail email='${project.projectResponsible}'/>"
-        });
-        </core_rt:forEach>
+            <%-- "clearing": "'${project.releaseClearingStateSummary}'",--%>
+             "responsible":"<sw360:DisplayUserEmail email='${project.projectResponsible}'/>"
+         });
+         </core_rt:forEach>
 
-        oTable = $('#projectsTable').DataTable({
-            "sPaginationType": "full_numbers",
-            "aaData": result,
-            search: {smart: false},
-            "aoColumns": [
-                {title: "Project Name", data: "name"}, //, render: {display: renderProjectNameLink}
-                {title: "Description", data: "description"}, //, render: {display: displayEscaped}
-                {title: "Project Responsible", data: "responsible"}, //, render: {display: renderUserEmail}
-                {title: "State", data: "state", render: {display: displayEscaped}},
-                {title: "Clearing Status", data: "clearing", render: {display: renderClearingStatus}},
-                {title: "Actions", data: "id", render: {display: renderProjectActions}}
-            ]
-        });
-
-
-        $('#projectsTable_filter').hide();
-        $('#projectsTable_first').hide();
-        $('#projectsTable_last').hide();
-    }
+         oTable = $('#projectsTable').DataTable({
+             "sPaginationType": "full_numbers",
+             "aaData": result,
+             search: {smart: false},
+             "aoColumns": [
+                 {title: "Project Name", data: "name"}, //, render: {display: renderProjectNameLink}
+                 {title: "Description", data: "description"}, //, render: {display: displayEscaped}
+                 {title: "Project Responsible", data: "responsible"}, //, render: {display: renderUserEmail}
+                 {title: "State", data: "state", render: {display: displayEscaped}},
+                 {title: "Clearing Status", data: "clearing", render: {display: renderClearingStatus}},
+                 {title: "Actions", data: "id", render: {display: renderProjectActions}}
+             ]
+         });
 
 
-    function createUrl_comp(paramId, paramVal) {
-        var portletURL = PortletURL.createURL('<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>')
-                .setParameter('<%=PortalConstants.PAGENAME%>', '<%=PortalConstants.PAGENAME_DETAIL%>').setParameter(paramId, paramVal);
-        return portletURL.toString();
-    }
-
-    function createDetailURLfromProjectId(paramVal) {
-        return createUrl_comp('<%=PortalConstants.PROJECT_ID%>', paramVal);
-    }
-    
-    function exportExcel() {
-        var portletURL = PortletURL.createURL('<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>')
-                .setParameter('<%=PortalConstants.ACTION%>', '<%=PortalConstants.EXPORT_TO_EXCEL%>');
-        portletURL.setParameter('<%=PortalConstants.KEY_SEARCH_TEXT%>', $('#keywordsearchinput').val());
-
-        window.location.href = portletURL.toString();
-
-    }
+         $('#projectsTable_filter').hide();
+         $('#projectsTable_first').hide();
+         $('#projectsTable_last').hide();
+     }
 
 
-    function openSelectClearingDialog(projectId, fieldId) {
-        $('#projectId').val(projectId);
+     function createUrl_comp(paramId, paramVal) {
+         var portletURL = PortletURL.createURL('<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>')
+                 .setParameter('<%=PortalConstants.PAGENAME%>', '<%=PortalConstants.PAGENAME_DETAIL%>').setParameter(paramId, paramVal);
+         return portletURL.toString();
+     }
 
-        setFormSubmit(fieldId);
-        fillClearingFormAndOpenDialog(projectId);
-    }
+     function createDetailURLfromProjectId(paramVal) {
+         return createUrl_comp('<%=PortalConstants.PROJECT_ID%>', paramVal);
+     }
 
-    function deleteProject(projectId, name) {
+     function exportExcel() {
+         var portletURL = PortletURL.createURL('<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>')
+                 .setParameter('<%=PortalConstants.ACTION%>', '<%=PortalConstants.EXPORT_TO_EXCEL%>');
+         portletURL.setParameter('<%=PortalConstants.KEY_SEARCH_TEXT%>', $('#keywordsearchinput').val());
 
-        if (confirm("Do you want to delete project " + name + " ?")) {
+         window.location.href = portletURL.toString();
 
-            jQuery.ajax({
-                type: 'POST',
-                url: '<%=deleteAjaxURL%>',
-                cache: false,
-                data: {
-                    "<portlet:namespace/><%=PortalConstants.PROJECT_ID%>": projectId
-                },
-                success: function (data) {
-                    if (data.result == 'SUCCESS') {
-                        oTable.ajax.reload();
-                    }
-                    else if (data.result == 'SENT_TO_MODERATOR') {
-                        alert("You may not delete the project, but a request was sent to a moderator!");
-                    } else if (data.result == 'IN_USE') {
-                        alert("The project is used by another project!");
-                    }
-                    else {
-                        alert("I could not delete the project!");
-                    }
-                },
-                error: function () {
-                    alert("I could not delete the project!");
-                }
-            });
-
-        }
-    }
+     }
 
 
-    function fillClearingFormAndOpenDialog(projectId) {
-        jQuery.ajax({
-            type: 'POST',
-            url: '<%=projectReleasesAjaxURL%>',
-            cache: false,
-            data: {
-                "<portlet:namespace/><%=PortalConstants.PROJECT_ID%>": projectId
-            },
-            success: function (data) {
-                $('#fossologyClearingTable').find('tbody').html(data);
-                openDialog('fossologyClearing', 'fossologyClearingForm', .4, .5);
-            },
-            error: function () {
-                alert("I could not get any releases!");
-            }
-        });
-    }
+     function openSelectClearingDialog(projectId, fieldId) {
+         $('#projectId').val(projectId);
 
-    function setFormSubmit(fieldId) {
-        $('#fossologyClearingForm').submit(function (e) {
-            e.preventDefault();
-            closeOpenDialogs();
+         setFormSubmit(fieldId);
+         fillClearingFormAndOpenDialog(projectId);
+     }
 
-            jQuery.ajax({
-                type: 'POST',
-                url: '<%=projectReleasesSendURL%>',
-                cache: false,
-                data: $('form#fossologyClearingForm').serialize(),
-                success: function (data) {
-                    if (data.result) {
-                        if (data.result == "FAILURE") {
-                            $('#' + fieldId).html("Error");
-                        }
-                        else {
-                            $('#' + fieldId).html("Sent");
-                        }
-                    }
-                },
-                error: function () {
-                    alert("I could not upload the files");
-                }
-            })
+     function deleteProject(projectId, name) {
 
-        });
+         if (confirm("Do you want to delete project " + name + " ?")) {
 
-    }
+             jQuery.ajax({
+                 type: 'POST',
+                 url: '<%=deleteAjaxURL%>',
+                 cache: false,
+                 data: {
+                     "<portlet:namespace/><%=PortalConstants.PROJECT_ID%>": projectId
+                 },
+                 success: function (data) {
+                     if (data.result == 'SUCCESS') {
+                         oTable.ajax.reload();
+                     }
+                     else if (data.result == 'SENT_TO_MODERATOR') {
+                         alert("You may not delete the project, but a request was sent to a moderator!");
+                     } else if (data.result == 'IN_USE') {
+                         alert("The project is used by another project!");
+                     }
+                     else {
+                         alert("I could not delete the project!");
+                     }
+                 },
+                 error: function () {
+                     alert("I could not delete the project!");
+                 }
+             });
 
-    function selectAll(form) {
-        $(form).find(':checkbox').prop("checked", true);
-    }
+         }
+     }
 
-</script>
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTable_Siemens.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/sw360.css">
+     function fillClearingFormAndOpenDialog(projectId) {
+         jQuery.ajax({
+             type: 'POST',
+             url: '<%=projectReleasesAjaxURL%>',
+             cache: false,
+             data: {
+                 "<portlet:namespace/><%=PortalConstants.PROJECT_ID%>": projectId
+             },
+             success: function (data) {
+                 $('#fossologyClearingTable').find('tbody').html(data);
+                 openDialog('fossologyClearing', 'fossologyClearingForm', .4, .5);
+             },
+             error: function () {
+                 alert("I could not get any releases!");
+             }
+         });
+     }
+
+     function setFormSubmit(fieldId) {
+         $('#fossologyClearingForm').submit(function (e) {
+             e.preventDefault();
+             closeOpenDialogs();
+
+             jQuery.ajax({
+                 type: 'POST',
+                 url: '<%=projectReleasesSendURL%>',
+                 cache: false,
+                 data: $('form#fossologyClearingForm').serialize(),
+                 success: function (data) {
+                     if (data.result) {
+                         if (data.result == "FAILURE") {
+                             $('#' + fieldId).html("Error");
+                         }
+                         else {
+                             $('#' + fieldId).html("Sent");
+                         }
+                     }
+                 },
+                 error: function () {
+                     alert("I could not upload the files");
+                 }
+             })
+
+         });
+
+     }
+
+     function selectAll(form) {
+         $(form).find(':checkbox').prop("checked", true);
+     }
+
+ </script>
+
+ <link rel="stylesheet" href="<%=request.getContextPath()%>/css/dataTable_Siemens.css">
+ <link rel="stylesheet" href="<%=request.getContextPath()%>/css/sw360.css">
