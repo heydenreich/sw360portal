@@ -264,7 +264,7 @@
             "description": "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state": "0",
             "clearing": "",
-            "responsible":"<sw360:DisplayUserEmail email='${project.projectResponsible}'/>"
+            "responsible":"<sw360:DisplayUserEmail email="${project.projectResponsible}"/>"
             <%-- "id": '${project.id}',
             "name": "<sw360:DisplayProjectLink project='${project}' />",
             "description":   "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
