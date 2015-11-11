@@ -268,7 +268,7 @@
         });
         </core_rt:forEach>
 
-        oTable = $('#componentsTable').DataTable({
+        oTable = $('#projectsTable').DataTable({
             "sPaginationType": "full_numbers",
             "aaData": result,
             search: {smart: false},
@@ -281,7 +281,8 @@
                 {title: "Actions", data: "id", render: {display: renderProjectActions}}
             ]
         });
-        
+
+
         $('#projectsTable_filter').hide();
         $('#projectsTable_first').hide();
         $('#projectsTable_last').hide();
