@@ -257,16 +257,16 @@
 
         var result = [];
 
-        <core_rt:forEach items="${projectList}" var="project">
+       <%-- <core_rt:forEach items="${projectList}" var="project">
         result.push({
             "id": '${project.id}',
             "name": "<sw360:DisplayProjectLink project='${project}' />",
             "description":   "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state": "<sw360:DisplayEnum value='${project.state}'/>",
-            <%-- "clearing": "'${project.releaseClearingStateSummary}'",--%>
+            "clearing": "'${project.releaseClearingStateSummary}'",
              "responsible":"<sw360:DisplayUserEmail email='${project.projectResponsible}'/>"
          });
-         </core_rt:forEach>
+         </core_rt:forEach> --%>
 
          oTable = $('#projectsTable').DataTable({
              "sPaginationType": "full_numbers",
@@ -277,7 +277,7 @@
                  {title: "Description", data: "description"}, //, render: {display: displayEscaped}
                  {title: "Project Responsible", data: "responsible"}, //, render: {display: renderUserEmail}
                  {title: "State", data: "state", render: {display: displayEscaped}},
-                 {title: "Clearing Status", data: "clearing", render: {display: renderClearingStatus}},
+                 <%--{title: "Clearing Status", data: "clearing", render: {display: renderClearingStatus}},--%>
                  {title: "Actions", data: "id", render: {display: renderProjectActions}}
              ]
          });
