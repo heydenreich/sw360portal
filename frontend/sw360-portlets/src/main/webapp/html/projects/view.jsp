@@ -283,7 +283,7 @@
                  {title: "Description", data: "description"}, //, render: {display: displayEscaped}
                  {title: "Project Responsible", data: "responsible"}, //, render: {display: renderUserEmail}
                  {title: "State", data: "state", render: {display: displayEscaped}},
-                 <%--{title: "Clearing Status", data: "clearing", render: {display: renderClearingStatus}},--%>
+                 {title: "Clearing Status", data: "clearing", render: {display: renderClearingStatus}},
                  {title: "Actions", data: "id", render: {display: renderProjectActions}}
              ]
          });
