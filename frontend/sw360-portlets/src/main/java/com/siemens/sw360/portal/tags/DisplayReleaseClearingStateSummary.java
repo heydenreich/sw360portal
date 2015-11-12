@@ -20,6 +20,7 @@ package com.siemens.sw360.portal.tags;
 
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.siemens.sw360.datahandler.thrift.components.ReleaseClearingStateSummary;
 import com.siemens.sw360.datahandler.thrift.users.User;
 import com.siemens.sw360.portal.common.JsonHelpers;
 import com.siemens.sw360.portal.common.ThriftJsonSerializer;
@@ -39,7 +40,7 @@ public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
 
     private DisplayReleaseClearingStateSummary releaseClearingStateSummary;
 
-    public void setClearing(DisplayReleaseClearingStateSummary clearing) {
+    public void setClearing(ReleaseClearingStateSummary releaseClearingStateSummary) {
         this.releaseClearingStateSummary = releaseClearingStateSummary;
     }
 
