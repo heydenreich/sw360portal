@@ -268,7 +268,7 @@
             "name": "<sw360:DisplayProjectLink project='${project}' />",
             "description": "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state":"<sw360:DisplayEnum value='${project.state}'/>",
-            "clearing":"<sw360:DisplayReleaseClearingStateSummary releaseClearingStateSummary='hallo'/>",
+            "clearing":"<sw360:DisplayReleaseClearingStateSummary releaseClearingStateSummary='hallo'>
             "responsible":'<sw360:DisplayUserEmail email="${project.projectResponsible}"/>'
         });
         </core_rt:forEach>
