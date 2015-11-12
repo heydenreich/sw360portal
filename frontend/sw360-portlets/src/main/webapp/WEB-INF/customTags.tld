@@ -610,7 +610,7 @@
     <tag>
         <name>DisplayReleaseClearingStateSummary</name>
         <tag-class>com.siemens.sw360.portal.tags.DisplayReleaseClearingStateSummary</tag-class>
-        <body-content>JSP</body-content>
+        <body-content>empty</body-content>
         <description>
             wraps ReleaseClearingStateSummary as Json object
         </description>

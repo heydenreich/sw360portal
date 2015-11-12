@@ -24,6 +24,7 @@ import com.siemens.sw360.datahandler.thrift.users.User;
 import com.siemens.sw360.portal.common.JsonHelpers;
 import com.siemens.sw360.portal.common.ThriftJsonSerializer;
 import com.siemens.sw360.portal.users.UserUtils;
+import org.apache.taglibs.standard.tag.common.core.OutSupport;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
@@ -52,4 +53,5 @@ public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
         }
     }
 }
+
 
