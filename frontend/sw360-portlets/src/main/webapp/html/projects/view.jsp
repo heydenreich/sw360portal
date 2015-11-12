@@ -263,7 +263,7 @@
             "description": "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state":"<sw360:DisplayEnum value='${project.state}'/>",
             "clearing": "'${project.releaseClearingStateSummary}'",
-            "responsible":"<sw360:out value="${project}"/>"
+            "responsible":'<sw360:DisplayUserEmail email="${project.projectResponsible}"/>'
          });
          </core_rt:forEach>
 
