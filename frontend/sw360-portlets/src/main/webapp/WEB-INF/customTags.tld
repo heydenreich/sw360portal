@@ -617,11 +617,7 @@
         <attribute>
             <name>releaseClearingStateSummary</name>
             <required>true</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>default</name>
-            <required>false</required>
+            <type>com.siemens.sw360.datahandler.thrift.components.ReleaseClearingStateSummary</type>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>
