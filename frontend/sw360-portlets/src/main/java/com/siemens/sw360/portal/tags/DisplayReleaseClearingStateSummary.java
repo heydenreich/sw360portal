@@ -59,7 +59,7 @@ public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
 
     private String releaseClearingStateSummary;
 
-    public void setClearing(String releaseClearingStateSummary) {
+    public void setReleaseClearingStateSummary(String releaseClearingStateSummary) {
         this.releaseClearingStateSummary = releaseClearingStateSummary;
     }
 
