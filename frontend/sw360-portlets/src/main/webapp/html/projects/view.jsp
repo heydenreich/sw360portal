@@ -254,8 +254,7 @@
 
 
     function createProjectsTable() {
-<%--
-        var result = [];
+       var result = [];
 
        <core_rt:forEach items="${projectList}" var="project">
         result.push({
@@ -285,7 +284,7 @@
 
          $('#projectsTable_filter').hide();
          $('#projectsTable_first').hide();
-         $('#projectsTable_last').hide();  --%>
+         $('#projectsTable_last').hide();
      }
 
 
