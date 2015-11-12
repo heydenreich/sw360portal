@@ -65,6 +65,7 @@ public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
 
     public void doTag() throws JspException, IOException {
 
-            getJspContext().getOut().print("");
+        getJspContext().getOut().print("");
 
     }
+}
