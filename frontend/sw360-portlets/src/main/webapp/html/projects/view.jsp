@@ -23,6 +23,8 @@
 <%@ page import="com.siemens.sw360.datahandler.thrift.components.ReleaseClearingStateSummary" %>
 <%@ page import="com.siemens.sw360.portal.common.PortalConstants" %>
 <%@ page import="javax.portlet.PortletRequest" %>
+<%@ page import="com.siemens.sw360.portal.common.JsonHelpers" %>
+<%@ page import="com.siemens.sw360.portal.common.ThriftJsonSerializer" %>
 
 <portlet:defineObjects/>
 <liferay-theme:defineObjects/>
@@ -258,16 +260,18 @@
     function createProjectsTable() {
        var result = [];
 
-       <core_rt:forEach items="${projectList}" var="project">
+       <%-- var pclearing = <%= JsonHelpers.toJson(${project}.getReleaseClearingStateSummary(), new ThriftJsonSerializer())%>; --%>
+
+        <core_rt:forEach items="${projectList}" var="project">
         result.push({
             "id": '${project.id}',
             "name": "<sw360:DisplayProjectLink project='${project}' />",
             "description": "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state":"<sw360:DisplayEnum value='${project.state}'/>",
-            "clearing": "'${project.releaseClearingStateSummary}'",
+            "clearing": "<sw360:DisplayReleaseClearingStateSummary releaseClearingStateSummary='${project.releaseClearingStateSummary}'/>",
             "responsible":'<sw360:DisplayUserEmail email="${project.projectResponsible}"/>'
-         });
-         </core_rt:forEach>
+        });
+        </core_rt:forEach>
 
          oTable = $('#projectsTable').DataTable({
              "sPaginationType": "full_numbers",
@@ -282,7 +286,6 @@
                  {title: "Actions", data: "id", render: {display: renderProjectActions}}
              ]
          });
-
 
          $('#projectsTable_filter').hide();
          $('#projectsTable_first').hide();
