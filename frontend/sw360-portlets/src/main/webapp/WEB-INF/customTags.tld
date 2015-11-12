@@ -617,7 +617,7 @@
         <attribute>
             <name>releaseClearingStateSummary</name>
             <required>true</required>
-            <type>java.lang.String</type>
+            <type>com.siemens.sw360.datahandler.thrift.components.ReleaseClearingStateSummary</type>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
     </tag>

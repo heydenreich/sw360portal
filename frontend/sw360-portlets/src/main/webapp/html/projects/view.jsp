@@ -260,15 +260,13 @@
     function createProjectsTable() {
        var result = [];
 
-       <%-- releaseClearingStateSummary='${project.releaseClearingStateSummary} --%>
-
         <core_rt:forEach items="${projectList}" var="project">
         result.push({
             "id": '${project.id}',
             "name": "<sw360:DisplayProjectLink project='${project}' />",
             "description": "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state":"<sw360:DisplayEnum value='${project.state}'/>",
-            "clearing":"<sw360:DisplayReleaseClearingStateSummary releaseClearingStateSummary='hallo'/>",
+            "clearing":"<sw360:DisplayReleaseClearingStateSummary releaseClearingStateSummary='${project.releaseClearingStateSummary}'/>",
             "responsible":'<sw360:DisplayUserEmail email="${project.projectResponsible}"/>'
         });
         </core_rt:forEach>

@@ -36,11 +36,11 @@ import java.io.IOException;
  *
  * @author birgit.heydenreich@tngtech.com
  */
-/*public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
+public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
 
-    private DisplayReleaseClearingStateSummary releaseClearingStateSummary;
+    private ReleaseClearingStateSummary releaseClearingStateSummary;
 
-    public void setClearing(ReleaseClearingStateSummary releaseClearingStateSummary) {
+    public void setReleaseClearingStateSummary(ReleaseClearingStateSummary releaseClearingStateSummary) {
         this.releaseClearingStateSummary = releaseClearingStateSummary;
     }
 
@@ -52,20 +52,5 @@ import java.io.IOException;
         } catch (JSONException e) {
             getJspContext().getOut().print("");
         }
-    }
-}*/
-
-public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
-
-    private String releaseClearingStateSummary;
-
-    public void setReleaseClearingStateSummary(String releaseClearingStateSummary) {
-        this.releaseClearingStateSummary = releaseClearingStateSummary;
-    }
-
-    public void doTag() throws JspException, IOException {
-
-        getJspContext().getOut().print("");
-
     }
 }
