@@ -615,7 +615,7 @@
             wraps ReleaseClearingStateSummary as Json object
         </description>
         <attribute>
-            <name>releaseClearingStateSummary</name>
+            <name>java.lang.String</name>
             <required>true</required>
             <type>com.siemens.sw360.datahandler.thrift.components.ReleaseClearingStateSummary</type>
             <rtexprvalue>true</rtexprvalue>

@@ -36,7 +36,7 @@ import java.io.IOException;
  *
  * @author birgit.heydenreich@tngtech.com
  */
-public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
+/*public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
 
     private DisplayReleaseClearingStateSummary releaseClearingStateSummary;
 
@@ -53,6 +53,18 @@ public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
             getJspContext().getOut().print("");
         }
     }
-}
+}*/
 
+public class DisplayReleaseClearingStateSummary extends SimpleTagSupport {
 
+    private String releaseClearingStateSummary;
+
+    public void setClearing(String releaseClearingStateSummary) {
+        this.releaseClearingStateSummary = releaseClearingStateSummary;
+    }
+
+    public void doTag() throws JspException, IOException {
+
+            getJspContext().getOut().print("");
+
+    }
