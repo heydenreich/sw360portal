@@ -20,6 +20,7 @@
 
 <%@ page import="com.liferay.portlet.PortletURLFactoryUtil" %>
 <%@ page import="com.siemens.sw360.datahandler.thrift.projects.Project" %>
+<%@ page import="com.siemens.sw360.datahandler.thrift.components.ReleaseClearingStateSummary" %>
 <%@ page import="com.siemens.sw360.portal.common.PortalConstants" %>
 <%@ page import="javax.portlet.PortletRequest" %>
 
@@ -31,6 +32,7 @@
 
 <jsp:useBean id="projectType" class="java.lang.String" scope="request"/>
 <jsp:useBean id="projectResponsible" class="java.lang.String" scope="request"/>
+<jsp:useBean id="releaseClearingStateSummary" class="com.siemens.sw360.datahandler.thrift.components.ReleaseClearingStateSummary" scope="request"/>
 <jsp:useBean id="businessUnit" class="java.lang.String" scope="request"/>
 <jsp:useBean id="tag" class="java.lang.String" scope="request"/>
 <jsp:useBean id="name" class="java.lang.String" scope="request"/>
