@@ -196,7 +196,7 @@
 <script src="<%=request.getContextPath()%>/js/external/jquery-ui.min.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/js/external/jquery.dataTables.js" type="text/javascript"></script>
 
-<sw360:DisplayUserEmail email="birgit.heydenreich@tngtech.com"></sw360:DisplayUserEmail>
+
 <script>
     var oTable;
 
@@ -263,7 +263,7 @@
             "description": "<sw360:out value="${project.description}" maxChar="140" jsQuoting="\""/>",
             "state":"<sw360:DisplayEnum value='${project.state}'/>",
             "clearing": "'${project.releaseClearingStateSummary}'",
-            "responsible":"<sw360:out value="${project.projectResponsible}"/>"
+            "responsible":"<sw360:out value="${project}"/>"
          });
          </core_rt:forEach>
 
