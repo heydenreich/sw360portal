@@ -258,14 +258,9 @@ public class ComponentPortlet extends FossologyAwarePortlet {
             List<Component> components;
 
             if (isNullOrEmpty(searchText)) {
-
                 components = client.getComponentSummaryForExport();
-
             } else {
-
                 components = client.searchComponentForExport(searchText);
-
-
             }
 
             ComponentExporter exporter = new ComponentExporter();
@@ -635,7 +630,6 @@ public class ComponentPortlet extends FossologyAwarePortlet {
     private void prepareStandardView(RenderRequest request) throws IOException {
         String searchtext = request.getParameter(KEY_SEARCH_TEXT);
 
-
         String searchfilter = request.getParameter(KEY_SEARCH_FILTER_TEXT);
 
         Map<String, Set<String>> filterMap = new HashMap<>();
@@ -659,7 +653,6 @@ public class ComponentPortlet extends FossologyAwarePortlet {
             } else {
                 componentList = componentClient.refineSearch(searchtext, filterMap);
             }
-
             Collections.sort(componentList,(Component c1, Component c2) -> c1.name.compareTo(c2.name));
         } catch (TException e) {
             log.error("Could not search components in backend ", e);

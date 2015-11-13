@@ -74,8 +74,6 @@ public class ProjectPortlet extends FossologyAwarePortlet {
 
     private static final ImmutableList<Project._Fields> projectFilteredFields = ImmutableList.of(Project._Fields.BUSINESS_UNIT,Project._Fields.PROJECT_TYPE, Project._Fields.PROJECT_RESPONSIBLE,Project._Fields.NAME,Project._Fields.STATE,Project._Fields.TAG);
 
-
-
     @Override
     protected Attachment linkAttachment(String documentId, String documentType, User user, String attachmentContentId) {
         try {

@@ -36,8 +36,6 @@ import static com.siemens.sw360.datahandler.common.CommonUtils.joinStrings;
  */
 public class ComponentExporter extends ExcelExporter<Component> {
 
-    //private static final int COLUMNS = 9;
-
     private static final List<String> HEADERS = ImmutableList.<String>builder()
             .add("Component ID")
             .add("Component Name")
