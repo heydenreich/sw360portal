@@ -23,15 +23,16 @@ package com.siemens.sw360.portal.notifications;
     import com.liferay.portal.model.UserNotificationEvent;
     import com.liferay.portal.service.ServiceContext;
     import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
+    import org.apache.log4j.Logger;
 
-    public class SW360UserNotificationHandler extends
+public class SW360UserNotificationHandler extends
             BaseUserNotificationHandler {
 
         public static final String PORTLET_ID = "components_WAR_sw360portlet";
-//        public static final String PORTLET_ID = "mycomponents_WAR_sw360portlet";
 
+        private static final Logger log = Logger.getLogger(SW360UserNotificationHandler.class);
         public SW360UserNotificationHandler() {
-
+            log.info("in SW360UserNotificationHandler  - Constructor");
             setPortletId(com.siemens.sw360.portal.notifications.SW360UserNotificationHandler.PORTLET_ID);
 
         }
@@ -39,7 +40,7 @@ package com.siemens.sw360.portal.notifications;
         @Override
         protected String getBody(UserNotificationEvent userNotificationEvent,
                                  ServiceContext serviceContext) throws Exception {
-
+            log.info("in getBody");
             JSONObject jsonObject = JSONFactoryUtil
                     .createJSONObject(userNotificationEvent.getPayload());
 
@@ -83,7 +84,7 @@ package com.siemens.sw360.portal.notifications;
         @Override
         protected String getLink(UserNotificationEvent userNotificationEvent,
                                  ServiceContext serviceContext) throws Exception {
-
+            log.info("in getLink");
             JSONObject jsonObject = JSONFactoryUtil
                     .createJSONObject(userNotificationEvent.getPayload());
 
@@ -104,6 +105,7 @@ package com.siemens.sw360.portal.notifications;
         }
 
         protected String getBodyTemplate() throws Exception {
+            log.info("in getBodyTemplate");
             StringBundler sb = new StringBundler(5);
             sb.append("<div class=\"title\">[$TITLE$]</div><div ");
             sb.append("class=\"body\">[$BODY_TEXT$]<a class=\"btn btn-action ");
