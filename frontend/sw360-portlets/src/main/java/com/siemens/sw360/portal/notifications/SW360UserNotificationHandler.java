@@ -28,8 +28,8 @@ package com.siemens.sw360.portal.notifications;
 public class SW360UserNotificationHandler extends
             BaseUserNotificationHandler {
 
-        public static final String PORTLET_ID = "components_WAR_sw360portlet";
-
+        //public static final String PORTLET_ID = "components_WAR_sw360portlet";
+        public static final String PORTLET_ID = "_2_WAR_notificationsportlet_userNotifications";
         private static final Logger log = Logger.getLogger(SW360UserNotificationHandler.class);
         public SW360UserNotificationHandler() {
             log.info("in SW360UserNotificationHandler  - Constructor");

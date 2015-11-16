@@ -731,7 +731,7 @@ public class ComponentPortlet extends FossologyAwarePortlet {
                                 (new Date()).getTime(),
                                 userId,
                                 payloadJSON.toString(),
-                                true,
+                                false,
                                 serviceContext);
                     } catch (PortalException e) {
                         log.error("Error in addUserNotificationEvent!", e);
