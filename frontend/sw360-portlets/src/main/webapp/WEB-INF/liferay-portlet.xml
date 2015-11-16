@@ -77,13 +77,13 @@
     </portlet>
 
     <portlet>
-    <portlet-name>example</portlet-name>
+    <portlet-name>SW360notification</portlet-name>
     <icon>/icon.png</icon>
         <user-notification-definitions>
-            SW360-user-notification-definitions.xml
+            SW360notification-user-notification-definitions.xml
         </user-notification-definitions>
         <user-notification-handler-class>
-            com.siemens.sw360.portal.notifications.SW360UserNotificationHandler
+            com.siemens.sw360.portal.notifications.SW360notificationUserNotificationHandler
         </user-notification-handler-class>
     </portlet>
 

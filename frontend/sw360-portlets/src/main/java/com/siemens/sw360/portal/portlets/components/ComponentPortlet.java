@@ -46,6 +46,7 @@ import com.siemens.sw360.portal.common.PortalConstants;
 import com.siemens.sw360.portal.common.PortletUtils;
 import com.siemens.sw360.portal.common.ThriftJsonSerializer;
 import com.siemens.sw360.portal.common.UsedAsLiferayAction;
+import com.siemens.sw360.portal.notifications.SW360notificationUserNotificationHandler;
 import com.siemens.sw360.portal.portlets.FossologyAwarePortlet;
 import com.siemens.sw360.portal.users.*;
 //import com.siemens.sw360.portal.users.UserCacheHolder;
@@ -723,11 +724,11 @@ public class ComponentPortlet extends FossologyAwarePortlet {
                         ServiceContext serviceContext = ServiceContextFactory.getInstance(request);
                         JSONObject payloadJSON = JSONFactoryUtil.createJSONObject();
                         payloadJSON.put("userId", userId);
+                        payloadJSON.put("yourCustomEntityId", 12345);
                         payloadJSON.put("additionalData", successMsg);
 
-                        log.info("addUserNotificationEvent to "+ com.siemens.sw360.portal.notifications.SW360UserNotificationHandler.PORTLET_ID);
                         UserNotificationEventLocalServiceUtil.addUserNotificationEvent(userId,
-                                com.siemens.sw360.portal.notifications.SW360UserNotificationHandler.PORTLET_ID,
+                                SW360notificationUserNotificationHandler.PORTLET_ID,
                                 (new Date()).getTime(),
                                 userId,
                                 payloadJSON.toString(),

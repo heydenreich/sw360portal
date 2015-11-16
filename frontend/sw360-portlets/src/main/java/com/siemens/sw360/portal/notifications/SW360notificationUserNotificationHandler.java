@@ -1,4 +1,35 @@
+/*
+ * Copyright Siemens AG, 2013-2015. Part of the SW360 Portal Project.
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License Version 2.0 as published by the
+ * Free Software Foundation with classpath exception.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License version 2.0 for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program (please see the COPYING file); if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301, USA.
+ */
 package com.siemens.sw360.portal.notifications;
+
+import javax.portlet.ActionRequest;
+import javax.portlet.PortletURL;
+import javax.portlet.WindowState;
+
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
+import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.UserNotificationEvent;
+import com.liferay.portal.service.ServiceContext;
+import org.apache.log4j.Logger;
 
 /**
  * For notifications/requests in the liferay-dockbar
@@ -6,35 +37,15 @@ package com.siemens.sw360.portal.notifications;
  * @author birgit.heydenreich@tngtech.com
  */
 
-
-    import javax.portlet.ActionRequest;
-    import javax.portlet.PortletURL;
-    import javax.portlet.WindowState;
-
-    import com.liferay.portal.kernel.json.JSONFactoryUtil;
-    import com.liferay.portal.kernel.json.JSONObject;
-    import com.liferay.portal.kernel.log.Log;
-    import com.liferay.portal.kernel.log.LogFactoryUtil;
-    import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
-    import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
-    import com.liferay.portal.kernel.util.StringBundler;
-    import com.liferay.portal.kernel.util.StringPool;
-    import com.liferay.portal.kernel.util.StringUtil;
-    import com.liferay.portal.model.UserNotificationEvent;
-    import com.liferay.portal.service.ServiceContext;
-    import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
-    import org.apache.log4j.Logger;
-
-public class SW360UserNotificationHandler extends
+public class SW360notificationUserNotificationHandler extends
             BaseUserNotificationHandler {
 
-        //public static final String PORTLET_ID = "components_WAR_sw360portlet";
-        public static final String PORTLET_ID = "_2_WAR_notificationsportlet_userNotifications";
-        private static final Logger log = Logger.getLogger(SW360UserNotificationHandler.class);
-        public SW360UserNotificationHandler() {
-            log.info("in SW360UserNotificationHandler  - Constructor");
-            setPortletId(com.siemens.sw360.portal.notifications.SW360UserNotificationHandler.PORTLET_ID);
+        public static final String PORTLET_ID = "components_WAR_sw360portlet";
+        private static final Logger log = Logger.getLogger(SW360notificationUserNotificationHandler.class);
 
+        public SW360notificationUserNotificationHandler() {
+            log.info("in SW360notificationUserNotificationHandler  - Constructor");
+            setPortletId(SW360notificationUserNotificationHandler.PORTLET_ID);
         }
 
         @Override
@@ -56,7 +67,7 @@ public class SW360UserNotificationHandler extends
             LiferayPortletResponse liferayPortletResponse = serviceContext
                     .getLiferayPortletResponse();
 
-            PortletURL confirmURL = liferayPortletResponse.createActionURL(com.siemens.sw360.portal.notifications.SW360UserNotificationHandler.PORTLET_ID);
+            PortletURL confirmURL = liferayPortletResponse.createActionURL(SW360notificationUserNotificationHandler.PORTLET_ID);
 
             confirmURL.setParameter(ActionRequest.ACTION_NAME, "doSomethingGood");
             confirmURL.setParameter("redirect", serviceContext.getLayoutFullURL());
@@ -64,7 +75,7 @@ public class SW360UserNotificationHandler extends
             confirmURL.setParameter("userNotificationEventId", String.valueOf(userNotificationEvent.getUserNotificationEventId()));
             confirmURL.setWindowState(WindowState.NORMAL);
 
-            PortletURL ignoreURL = liferayPortletResponse.createActionURL(com.siemens.sw360.portal.notifications.SW360UserNotificationHandler.PORTLET_ID);
+            PortletURL ignoreURL = liferayPortletResponse.createActionURL(SW360notificationUserNotificationHandler.PORTLET_ID);
             ignoreURL.setParameter(ActionRequest.ACTION_NAME, "cancelForExample");
             ignoreURL.setParameter("redirect", serviceContext.getLayoutFullURL());
             ignoreURL.setParameter("yourCustomEntityId", String.valueOf(yourCustomEntityId));
@@ -94,7 +105,7 @@ public class SW360UserNotificationHandler extends
             LiferayPortletResponse liferayPortletResponse = serviceContext
                     .getLiferayPortletResponse();
 
-            PortletURL viewURL = liferayPortletResponse.createActionURL(com.siemens.sw360.portal.notifications.SW360UserNotificationHandler.PORTLET_ID);
+            PortletURL viewURL = liferayPortletResponse.createActionURL(SW360notificationUserNotificationHandler.PORTLET_ID);
             viewURL.setParameter(ActionRequest.ACTION_NAME, "showDetails");
             viewURL.setParameter("redirect", serviceContext.getLayoutFullURL());
             viewURL.setParameter("yourCustomEntityId", String.valueOf(yourCustomEntityId));
