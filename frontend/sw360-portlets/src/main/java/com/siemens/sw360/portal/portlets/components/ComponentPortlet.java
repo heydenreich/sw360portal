@@ -725,7 +725,7 @@ public class ComponentPortlet extends FossologyAwarePortlet {
                         payloadJSON.put("userId", userId);
                         payloadJSON.put("additionalData", successMsg);
 
-
+                        log.info("addUserNotificationEvent");
                         UserNotificationEventLocalServiceUtil.addUserNotificationEvent(userId,
                                 com.siemens.sw360.portal.notifications.SW360UserNotificationHandler.PORTLET_ID,
                                 (new Date()).getTime(),
