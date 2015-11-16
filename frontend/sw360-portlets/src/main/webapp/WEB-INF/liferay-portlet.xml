@@ -80,7 +80,7 @@
     <portlet-name>example</portlet-name>
     <icon>/icon.png</icon>
         <user-notification-definitions>
-            sw360-user-notification-definitions.xml
+            SW360-user-notification-definitions.xml
         </user-notification-definitions>
         <user-notification-handler-class>
             com.siemens.sw360.portal.notifications.SW360UserNotificationHandler
