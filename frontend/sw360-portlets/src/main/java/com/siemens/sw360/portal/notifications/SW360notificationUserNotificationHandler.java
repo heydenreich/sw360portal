@@ -44,7 +44,7 @@ public class SW360notificationUserNotificationHandler extends
         private static final Logger log = Logger.getLogger(SW360notificationUserNotificationHandler.class);
 
         public SW360notificationUserNotificationHandler() {
-            log.info("in SW360notificationUserNotificationHandler  - Constructor");
+            log.error("in SW360notificationUserNotificationHandler  - Constructor");
             setPortletId(SW360notificationUserNotificationHandler.PORTLET_ID);
         }
 

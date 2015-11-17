@@ -83,7 +83,7 @@
             SW360notification-user-notification-definitions.xml
         </user-notification-definitions>
         <user-notification-handler-class>
-            com.siemens.sw360.portal.notifications.SW360notificationUserNotificationHandler
+            com.siemens.sw360.portal.notifications.FalseSW360notificationUserNotificationHandler
         </user-notification-handler-class>
     </portlet>
 

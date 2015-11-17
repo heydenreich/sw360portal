@@ -2,7 +2,7 @@
 <!DOCTYPE user-notification-definitions PUBLIC "-//Liferay//DTD User Notification Definitions 6.2.0//EN" "http://www.liferay.com/dtd/liferay-user-notification-definitions_6_2_0.dtd">
 <user-notification-definitions>
     <definition>
-        <notification-type>${com.siemens.sw360.portal.notifications.SW360notificationUserNotificationHandler.PORTLET_ID}</notification-type>
+        <notification-type>${com.siemens.sw360.portal.notifications.FalseSW360notificationUserNotificationHandler.PORTLET_ID}</notification-type>
         <description>receive-a-notification-when-sw360-triggered</description>
         <delivery-type>
             <name>email</name>
