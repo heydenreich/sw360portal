@@ -66,7 +66,7 @@ public class VendorRepository extends DatabaseRepository<Vendor> {
             update(vendor);
             return RequestStatus.SUCCESS;
         } else {
-            log.error("User is not allowed to delete!");
+            log.error("User is not allowed to make changes!");
             return RequestStatus.FAILURE;
         }
     }
