@@ -52,7 +52,7 @@ public class SW360notificationUserNotificationHandler extends
         protected String getBody(UserNotificationEvent userNotificationEvent,
                                  ServiceContext serviceContext) throws Exception {
             log.info("in getBody");
-            JSONObject jsonObject = JSONFactoryUtil
+            /*JSONObject jsonObject = JSONFactoryUtil
                     .createJSONObject(userNotificationEvent.getPayload());
 
             long yourCustomEntityId = jsonObject
@@ -89,14 +89,15 @@ public class SW360notificationUserNotificationHandler extends
                     serviceContext.translate("reject"), ignoreURL.toString(),
                     title, bodyText });
 
-            return body;
+            return body;*/
+            return "";
         }
 
         @Override
         protected String getLink(UserNotificationEvent userNotificationEvent,
                                  ServiceContext serviceContext) throws Exception {
             log.info("in getLink");
-            JSONObject jsonObject = JSONFactoryUtil
+            /*JSONObject jsonObject = JSONFactoryUtil
                     .createJSONObject(userNotificationEvent.getPayload());
 
             long yourCustomEntityId = jsonObject
@@ -112,18 +113,20 @@ public class SW360notificationUserNotificationHandler extends
             viewURL.setParameter("userNotificationEventId", String.valueOf(userNotificationEvent.getUserNotificationEventId()));
             viewURL.setWindowState(WindowState.NORMAL);
 
-            return viewURL.toString();
+            return viewURL.toString();*/
+            return "";
         }
 
         protected String getBodyTemplate() throws Exception {
             log.info("in getBodyTemplate");
-            StringBundler sb = new StringBundler(5);
+            /*StringBundler sb = new StringBundler(5);
             sb.append("<div class=\"title\">[$TITLE$]</div><div ");
             sb.append("class=\"body\">[$BODY_TEXT$]<a class=\"btn btn-action ");
             sb.append("btn-success\" href=\"[$CONFIRM_URL$]\">[$CONFIRM$]</a>");
             sb.append("<a class=\"btn btn-action btn-warning\" href=\"");
             sb.append("[$IGNORE_URL$]\">[$IGNORE$]</a></div>");
-            return sb.toString();
+            return sb.toString();*/
+            return "";
         }
 
     }
