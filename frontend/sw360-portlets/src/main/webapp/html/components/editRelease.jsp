@@ -24,6 +24,7 @@
 <%@ page import="com.siemens.sw360.portal.portlets.Sw360Portlet" %>
 <%@ page import="com.siemens.sw360.portal.portlets.projects.ProjectPortlet" %>
 <%@ page import="javax.portlet.PortletRequest" %>
+<%@ page import="com.siemens.sw360.datahandler.thrift.components.*" %>
 
 <%@ taglib prefix="sw360" uri="/WEB-INF/customTags.tld" %>
 
@@ -42,7 +43,7 @@
 <core_rt:set var="operatingSystemsAutoC" value='<%=PortalConstants.OPERATING_SYSTEMS%>'/>
 
 <core_rt:set var="addMode" value="${empty release.id}"/>
-
+<core_rt:set var="cotsMode" value="<%=component.componentType == ComponentType.COTS%>"/>
 
 <portlet:actionURL var="updateReleaseURL" name="updateRelease">
     <portlet:param name="<%=PortalConstants.COMPONENT_ID%>" value="${component.id}"/>
@@ -91,6 +92,9 @@
                     </core_rt:if>
                     <li><a href="#tab-Attachments">Attachments</a></li>
                     <li><a href="#tab-UsingDocs">Using Documents</a></li>
+                    <core_rt:if test="${cotsMode}">
+                        <li><a href="#tab-COTSDetails">COTS-Details</a></li>
+                    </core_rt:if>
                 </ul>
                 <div class="tab-content span10">
                     <div id="tab-ReleaseInformation" class="tab-pane">
@@ -113,9 +117,13 @@
                     <div id="tab-UsingDocs">
                         <%@include file="/html/components/includes/releases/usingDocsTable.jspf" %>
                     </div>
+                    <core_rt:if test="${cotsMode}">
+                        <div id="tab-COTSDetails">
+                            <%@include file="/html/components/includes/releases/editCOTSDetails.jspf" %>
+                        </div>
+                    </core_rt:if>
                 </div>
             </div>
-            <%--<input type="button" value="Validate" onclick="validate()">--%>
             <core_rt:if test="${not addMode}">
                 <input type="hidden" value="true" name="<portlet:namespace/>clearingInformation">
                 <input type="submit" value="Update Release" class="addButton" >

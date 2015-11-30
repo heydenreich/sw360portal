@@ -24,6 +24,7 @@
 <%@ taglib prefix="sw360" uri="/WEB-INF/customTags.tld" %>
 <%@ page import="com.siemens.sw360.portal.common.PortalConstants" %>
 <%@ page import="javax.portlet.PortletRequest" %>
+<%@ page import="com.siemens.sw360.datahandler.thrift.components.ComponentType" %>
 
 <portlet:defineObjects/>
 <liferay-theme:defineObjects/>
@@ -35,6 +36,7 @@
              scope="request"/>
 
 <jsp:useBean id="usingComponents" type="java.util.Set<com.siemens.sw360.datahandler.thrift.components.Component>" scope="request"/>
+<core_rt:set var="cotsMode" value="<%=component.componentType == ComponentType.COTS%>"/>
 
 <portlet:resourceURL var="subscribeReleaseURL">
     <portlet:param name="<%=PortalConstants.ACTION%>" value="<%=PortalConstants.SUBSCRIBE_RELEASE%>"/>
@@ -80,6 +82,9 @@
                 <li <core_rt:if test="${selectedTab == 'Linked Releases'}">              class="active" </core_rt:if>  >                <a href="#tab-linkedReleases">Linked Releases</a></li>
                 <li <core_rt:if test="${selectedTab == 'Clearing'}">                     class="active" </core_rt:if> id="Clearing" >   <a href="#tab-ClearingStatus">Clearing Details</a></li>
                 <li <core_rt:if test="${selectedTab == 'Attachments'}">                  class="active" </core_rt:if>  >                <a href="#tab-Attachments">Attachments</a></li>
+                <core_rt:if test="${cotsMode}">
+                    <li <core_rt:if test="${selectedTab == 'COTSDetails'}"> class="active" </core_rt:if>  ><a href="#tab-COTSDetails">COTS-Details</a></li>
+                </core_rt:if>
             </ul>
             <div class="tab-content span10">
                 <div id="tab-Summary" class="tab-pane">
@@ -98,6 +103,11 @@
                 <div id="tab-Attachments">
                     <jsp:include page="/html/utils/includes/attachmentsDetail.jsp" />
                 </div>
+                <core_rt:if test="${cotsMode}">
+                    <div id="tab-COTSDetails">
+                        <%@include file="/html/components/includes/releases/COTSDetails.jspf" %>
+                    </div>
+                </core_rt:if>
             </div>
         </div>
     </div>
