@@ -18,6 +18,7 @@
 package com.siemens.sw360.components.summary;
 
 import com.google.common.collect.ImmutableSet;
+import com.siemens.sw360.datahandler.thrift.components.ReleaseClearingStateSummary;
 import com.siemens.sw360.datahandler.thrift.projects.Project;
 import com.siemens.sw360.datahandler.thrift.projects.ProjectState;
 import org.junit.Test;
@@ -45,6 +46,9 @@ public class ProjectSummaryTest {
                     break;
                 case RELEASE_IDS:
                     project.releaseIds = ImmutableSet.of("2","3" );
+                    break;
+                case RELEASE_CLEARING_STATE_SUMMARY:
+                    project.releaseClearingStateSummary = new ReleaseClearingStateSummary(0,0,0,0);
                     break;
                 default: //most fields are string
                     project.setFieldValue(renderedField, "asd");
